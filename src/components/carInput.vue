@@ -60,6 +60,9 @@
 </template>
 <script>
 export default {
+  props: {
+    value: [String, Object, Array]
+  },
   data() {
     return {
       selectArr: [],
@@ -142,12 +145,21 @@ export default {
   watch: {
     selectArr(val) {
       this.$emit("input", val);
+    },
+    value(val) {
+      if (!val) {
+        this.reset();
+      }
     }
   },
   methods: {
     showWrap() {
-      this.show = true;
-      this.showFirst = !(this.selectArr.length > 0);
+      if (this.show === false) {
+        this.show = true;
+        this.showFirst = !(this.selectArr.length > 0);
+      } else {
+        this.show = false;
+      }
     },
     selectFirstWord(item) {
       this.addSelect(item);
@@ -174,21 +186,29 @@ export default {
     clickMask() {
       // console.log('clickMask')
       this.close();
+    },
+    reset() {
+      this.show = false;
+      this.showFirst = true;
+      this.selectArr = [];
+    },
+    init() {
+      this.reset();
+      let container = document.querySelector(".container");
+      container.addEventListener("click", event => {
+        if (
+          event.target.id !== "carInput" &&
+          event.target.nodeName !== "SPAN" &&
+          event.target.nodeName !== "DIV" &&
+          event.target.nodeName !== "I"
+        ) {
+          this.close();
+        }
+      });
     }
   },
   mounted() {
-    this.selectArr = [];
-    let container = document.querySelector(".container");
-    container.addEventListener("click", event => {
-      if (
-        event.target.id !== "carInput" &&
-        event.target.nodeName !== "SPAN" &&
-        event.target.nodeName !== "DIV" &&
-        event.target.nodeName !== "I"
-      ) {
-        this.close();
-      }
-    });
+    this.init();
   }
 };
 </script>

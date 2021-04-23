@@ -3,10 +3,16 @@
     <car-input v-model="carNum">
       <div class="trigger">触发</div>
     </car-input>
-    <div v-if="carNum && carNum.length > 0">
-      <p>select：</p>
-      {{ carNum.join("") }}
-    </div>
+
+    <template v-if="show">
+      <div>
+        <p>select：</p>
+        {{ carNum.join("") }}
+      </div>
+      <div class="clear-btn" @click="clear">
+        clear
+      </div>
+    </template>
   </div>
 </template>
 
@@ -18,6 +24,16 @@ export default {
     return {
       carNum: null
     };
+  },
+  computed: {
+    show() {
+      return this.carNum && this.carNum.length > 0;
+    }
+  },
+  methods: {
+    clear() {
+      this.carNum = null;
+    }
   }
 };
 </script>
@@ -30,6 +46,12 @@ export default {
     .utilBtn();
 
     width: 100px;
+  }
+  .clear-btn {
+    .utilBtn();
+
+    width: 100px;
+    margin-top: 30px;
   }
 }
 </style>
