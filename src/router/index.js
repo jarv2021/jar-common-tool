@@ -11,7 +11,7 @@ const constantRoter = [
   },
   {
     path: "/pdf",
-    component: () => import("@/components/online-pdf"),
+    component: () => import("@/components/onlinePdf"),
     name: "pdf"
   }
 ];
