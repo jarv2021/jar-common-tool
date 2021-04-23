@@ -1,5 +1,12 @@
 # jar-common-tool
 
+### 项目运行
+
+```
+npm i
+npm run serve
+```
+
 ## 1. 简易的车牌号选择器(vue 版本)
 
 ### 组件名称 : carInput
