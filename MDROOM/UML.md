@@ -11,3 +11,7 @@ https://www.cnblogs.com/fswhq/p/10005518.html
 ## 【UML 建模】UML 入门 之 交互图 -- 时序图 协作图详解
 
 https://blog.csdn.net/shulianghan/article/details/17927131
+
+## 看懂 UML 类图和时序图
+
+https://www.cnblogs.com/me115/p/4092632.html

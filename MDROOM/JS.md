@@ -240,3 +240,145 @@ https://blog.csdn.net/xishaoguo/article/details/80688179
 https://blog.csdn.net/weixin_42333548/article/details/80539239
 
 ---
+
+# sessionStorage 的数据会在同一网站的多个标签页之间共享吗？这取决于标签页如何打开
+
+https://www.cnblogs.com/as007012/p/9860605.html
+
+---
+
+# Chrome 浏览器如何强制刷新页面(不使用缓存)？
+
+https://blog.csdn.net/chengyu1769/article/details/100708405
+
+---
+
+# require 和 import 的区别
+
+https://www.cnblogs.com/ranyonsue/p/10861276.html
+
+遵循规范
+
+–require 是 AMD 规范引入方式
+
+–import 是 es6 的一个语法标准，如果要兼容浏览器的话必须转化成 es5 的语法
+
+调用时间
+
+–require 是运行时调用，所以 require 理论上可以运用在代码的任何地方
+
+–import 是编译时调用，所以必须放在文件开头
+
+本质
+
+–require 是赋值过程，其实 require 的结果就是对象、数字、字符串、函数等，再把 require 的结果赋值给某个变量
+
+–import 是解构过程，但是目前所有的引擎都还没有实现 import，我们在 node 中使用 babel 支持 ES6，也仅仅是将 ES6 转码为 ES5 再执行，import 语法会被转码为 require
+
+---
+
+# JS 判断浏览器是否禁用 COOKIE
+
+http://www.song-z.com/article/detail/341/842
+
+---
+
+# 如何获取 input 自定义属性
+
+https://www.cnblogs.com/peng14/p/3338600.html
+
+---
+
+# js 监听页面 copy 事件添加版权信息
+
+https://www.cnblogs.com/fanwenhao/p/9685293.html
+
+---
+
+# 知识点--- SCROLLINTOVIEW()的用法
+
+https://www.cnblogs.com/liaohongwei/p/10868295.html
+
+---
+
+# Js 判断值是否是 NaN
+
+https://www.cnblogs.com/chenmeijiao/p/12060834.html
+
+---
+
+# 【ES6 学习笔记之】Object.assign()
+
+https://www.jianshu.com/p/d5f572dd3776
+
+---
+
+# js 判断 ipv4 ipv6
+
+https://blog.csdn.net/jiegeng2233/article/details/59483744
+
+---
+
+# js 中 for 跳出循环（包括多层循环）return 和 break 的区别
+
+https://blog.csdn.net/weixin_38098192/article/details/84345494
+
+https://www.cnblogs.com/jrystal/p/7067390.html
+
+单层循环
+
+1.for 循环中 return 语句：会直接跳出循环，
+
+因为 js 中 for 是没有局部作用域的概念的，所以只有把 for 循环放在函数中时，才可以在 for 循环中使用 return 语句。
+
+2.for 循环中的 break 语句：和 return 一样会直接跳出循环
+
+与 return 不同的是，使用 break 时，for 循环可以不用一定放在函数中 ；
+
+多层循环：
+
+1.return：和单层循环一样必须放在函数中，否则将会报语法错误
+
+2.break 语句：和单层循环一样，可以可以不用放在函数中
+
+但是在多层循环中与 return 不同的是，break 不是跳出函数，而是跳出最里层的 for 循环，外面的循环和最外层 for 循环后面的语句也将继续执行
+
+---
+
+# js 截取数组 slice(),splice()两种方法
+
+slice()
+
+返回一个索引和另一个索引之间的数据(不改变原数组),slice(start,end)有两个参数(start 必需,end 选填),都是索引,返回值不包括 end
+
+splice()
+
+用来添加或者删除数组的数据,只返回被删除的数据,类型为数组(改变原数组)
+
+https://blog.csdn.net/qq_43627981/article/details/99625825
+
+---
+
+# javascript 如何监听页面刷新和页面关闭事件
+
+https://www.cnblogs.com/qqblog/p/6265008.html
+
+---
+
+# JavaScript 获取浏览器语言的方法
+
+https://www.cnblogs.com/bescheiden/articles/9320597.html
+
+---
+
+# JS 向上取整、向下取整、四舍五入等
+
+https://www.jianshu.com/p/a93bd02d9eb7
+
+---
+
+# js 判断字符串中是否包含某个字符串
+
+https://www.cnblogs.com/ooo0/p/7741651.html
+
+---
