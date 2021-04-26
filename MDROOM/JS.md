@@ -382,3 +382,41 @@ https://www.jianshu.com/p/a93bd02d9eb7
 https://www.cnblogs.com/ooo0/p/7741651.html
 
 ---
+
+# js 中 push(),pop(),unshift(),shift()的用法小结
+
+https://www.cnblogs.com/dyqblog/p/5434803.html
+
+push()和 unshift()
+
+向数组的 尾部/头部 添加若干元素，并返回 数组的 新长度；
+
+pop()和 shift()
+
+从数组的 尾部/头部 删除 1 个元素(删且只删除 1 个)，并返回 被删除的元素；空数组是继续删除，不报错，但返回 undefined；
+
+---
+
+# js 禁止页面滚动
+
+https://www.cnblogs.com/wxcbg/p/10452985.html
+
+---
+
+# JS 获取浏览器信息及屏幕分辨率
+
+https://www.cnblogs.com/Abner5/p/6016973.html
+
+---
+
+# Js 获取移动设备分辨率
+
+https://www.cnblogs.com/YYvam1288/p/5409129.html
+
+---
+
+# 浅谈 JavaScript 异步加载的三种方式——async 和 defer、动态创建 script
+
+https://blog.csdn.net/zhouziyu2011/article/details/60149590
+
+---
