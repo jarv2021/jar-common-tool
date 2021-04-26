@@ -16,6 +16,8 @@ https://imweb.io/topic/596480af33d7f9a94951744c
 
 http://yankj.github.io/%E6%96%87%E7%AB%A0-whistle/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95%E7%BB%88%E6%9E%81%E5%88%A9%E5%99%A8whistle/
 
+---
+
 # fiddler
 
 # HTTP 抓包神器 - Fiddler
@@ -33,3 +35,11 @@ https://www.cnblogs.com/yyhh/p/5140852.html
 ## Fiddler 抓包 8-打断点（bpu）
 
 https://www.cnblogs.com/yoyoketang/p/6778006.html
+
+---
+
+# dom 元素上添加断点（使用 dom breakpoint 找到修改属性的 javascript 代码）
+
+https://www.cnblogs.com/fangsmile/p/11943414.html
+
+---
