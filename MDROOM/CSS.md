@@ -14,6 +14,18 @@ https://www.cnblogs.com/sugartang/p/11628541.html
 
 https://blog.csdn.net/liguanjie8/article/details/83068675
 
+# CSS 技巧一则 -- 不定宽溢出文本适配滚动
+
+https://juejin.cn/post/6854573220382081037
+
+# overflow-wrap
+
+http://caibaojian.com/css3/properties/text/overflow-wrap.htm
+
+# 把一行字掰弯和变直：p 标签文字过长换行与禁止换行): overflow-wrap: break-word;
+
+https://www.cnblogs.com/autoXingJY/p/10689593.html
+
 ---
 
 # Css 边框阴影：box-shadow 属性
@@ -61,27 +73,9 @@ https://blog.csdn.net/qq_39241443/article/details/90447694?utm_medium=distribute
 
 ---
 
-# CSS 技巧一则 -- 不定宽溢出文本适配滚动
-
-https://juejin.cn/post/6854573220382081037
-
----
-
-# overflow-wrap
-
-http://caibaojian.com/css3/properties/text/overflow-wrap.htm
-
----
-
 # 纯 CSS3 使用 vw 和 vh 视口单位实现自适应
 
 http://caibaojian.com/vw-vh.html
-
----
-
-# 把一行字掰弯和变直：p 标签文字过长换行与禁止换行): overflow-wrap: break-word;
-
-https://www.cnblogs.com/autoXingJY/p/10689593.html
 
 ---
 
