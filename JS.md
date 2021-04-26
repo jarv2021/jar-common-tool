@@ -181,4 +181,115 @@ visibilitychange 事件是浏览器新添加的一个事件，当浏览器的某
 
 ---
 
+# event.stopPropagation()和 event.preventDefault()
+
+https://blog.csdn.net/qq_39207948/article/details/79408323
+
+1.event.stopPropagation()方法
+
+这是阻止事件的冒泡方法，不让事件向 documen 上蔓延，但是默认事件任然会执行，当你掉用这个方法的时候，如果点击一个连接，这个连接仍然会被打开，
+
+2.event.preventDefault()方法
+
+这是阻止默认事件的方法，调用此方法是，连接不会被打开，但是会发生冒泡，冒泡会传递到上一层的父元素；
+
+3.return false ；
+
+这个方法比较暴力，他会同事阻止事件冒泡也会阻止默认事件；写上此代码，连接不会被打开，事件也不会传递到上一层的父元素；
+可以理解为 return false 就等于同时调用了 event.stopPropagation()和 event.preventDefault()
+
+---
+
+# js 如何识别出字符串中的回车 \n 并输出换行
+
+https://blog.csdn.net/lianzhang861/article/details/80581042?utm_source=blogxgwz2
+
+str = str.replace(/↵/g,"<br/>");
+str=str.replace(/\n/g,"<br/>")
+
+---
+
+# 正则表达式匹配:包含且不包含
+
+https://blog.csdn.net/thewindkee/article/details/52785763
+
+例:包含 admin 且不包含 abc。
+
+---
+
+# dom 元素上添加断点（使用 dom breakpoint 找到修改属性的 javascript 代码）
+
+https://www.cnblogs.com/fangsmile/p/11943414.html
+
+---
+
+# localStorage 设置过期时间
+
+https://www.cnblogs.com/ricolee/p/localstorage-expiretime.html
+
+---
+
+# console.log()、console.info()、console.debug()的区别
+
+https://blog.csdn.net/xishaoguo/article/details/80688179
+
+---
+
+# git 撤销 pull 命令
+
+https://www.cnblogs.com/yangsg/p/11975867.html
+
+---
+
+# git commit 之后，想撤销 commit
+
+https://www.cnblogs.com/lfxiao/p/9378763.html
+
+---
+
+# git 合并某次（或多次）提交到当前分支，还原正在的解决冲突的合并
+
+https://blog.csdn.net/fyj13925475957/article/details/107985244
+
+---
+
+# vue-router 中 hash 模式和 history 模式。
+
+https://www.cnblogs.com/yangsg/p/10621590.html
+
+history 模式的问题
+通过 history api，我们丢掉了丑陋的#，但是它也有个问题：不怕前进，不怕后退，就怕刷新，f5，（如果后端没有准备的话）,因为刷新是实实在在地去请求服务器的。
+在 hash 模式下，前端路由修改的是#中的信息，而浏览器请求时不会将 # 后面的数据发送到后台，所以没有问题。
+但是在 history 下，你可以自由的修改 path，当刷新时，如果服务器中没有相应的响应或者资源，则会刷新出来 404 页面。
+
+---
+
+# 视频标签 video 的一些特殊属性详解
+
+http://caibaojian.com/h5-video.html
+
+---
+
+# APP 唤起那点破事
+
+https://libin1991.github.io/2020/03/21/APP%E5%94%A4%E8%B5%B7%E9%82%A3%E7%82%B9%E7%A0%B4%E4%BA%8B/
+
+---
+
+# 内容安全策略（CSP）详解
+
+https://www.cnblogs.com/both-eyes/p/10841875.html
+
+---
+
+# 你不知道的 web 生命周期
+
+https://juejin.cn/post/6844904133321818119
+
+---
+
+# 页面生命周期 API 及 H5 唤起 App 踩坑心得
+
+https://juejin.cn/post/6844904151353131015
+
 ---
