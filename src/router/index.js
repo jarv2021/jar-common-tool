@@ -13,6 +13,11 @@ const constantRoter = [
     path: "/pdf",
     component: () => import("@/components/onlinePdf"),
     name: "pdf"
+  },
+  {
+    path: "/markdom",
+    component: () => import("@/components/markdom"),
+    name: "markdom"
   }
 ];
 

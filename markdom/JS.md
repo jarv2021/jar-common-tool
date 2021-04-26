@@ -1,6 +1,6 @@
 # JS 中 find(), findIndex(), filter(), forEach(), some(), every(), map()方法
 
-https://www.cnblogs.com/wfc139/p/10383509.html
+<a href="https://www.cnblogs.com/wfc139/p/10383509.html" target="_blank">https://www.cnblogs.com/wfc139/p/10383509.html</a>
 
 1. find()与 findIndex()
 
@@ -41,7 +41,7 @@ map() 方法返回一个新数组，数组中的元素为原始数组元素调�
 
 # JS offset、client、scroll 家族
 
-https://juejin.cn/post/6869735468771721223
+<a href="https://juejin.cn/post/6869735468771721223" target="_blank">https://juejin.cn/post/6869735468771721223</a>
 
 ## offset 家族
 
@@ -101,8 +101,9 @@ scrollHeight = clientHeight + scrollTop
 
 # js 变动事件
 
-https://www.cnblogs.com/lst619247/p/8873219.html
-https://www.cnblogs.com/yhl-0822/articles/7818930.html
+[https://www.cnblogs.com/lst619247/p/8873219.html](https://www.cnblogs.com/lst619247/p/8873219.html)
+
+[https://www.cnblogs.com/yhl-0822/articles/7818930.html](https://www.cnblogs.com/yhl-0822/articles/7818930.html)
 
 DOM2 级的变动（mutation）事件能在 DOM 中的某一部分发生变化时给出提示。变动事件是为 XML 或 HTML DOM 设计的，并不特定于某种语言。DOM2 级定义了如下变动事件：
 
@@ -149,13 +150,13 @@ DOMCharacterDataModified
 
 # javascript - 立即执行函数
 
-https://www.cnblogs.com/L-xmin/p/11178599.html
+[https://www.cnblogs.com/L-xmin/p/11178599.html](https://www.cnblogs.com/L-xmin/p/11178599.html)
 
 ---
 
 # JavaScript exec() 方法
 
-https://www.w3school.com.cn/js/jsref_exec_regexp.asp
+[https://www.w3school.com.cn/js/jsref_exec_regexp.asp](https://www.w3school.com.cn/js/jsref_exec_regexp.asp)
 
 定义和用法
 exec() 方法用于检索字符串中的正则表达式的匹配。
@@ -167,15 +168,15 @@ exec() 方法用于检索字符串中的正则表达式的匹配。
 
 # js 事件触发器 dispatchEvent()
 
-https://blog.csdn.net/weixin_33722405/article/details/85892944
+[https://blog.csdn.net/weixin_33722405/article/details/85892944](https://blog.csdn.net/weixin_33722405/article/details/85892944)
 
-https://www.cnblogs.com/boonya/p/11165150.html
+[https://www.cnblogs.com/boonya/p/11165150.html](https://www.cnblogs.com/boonya/p/11165150.html)
 
 ---
 
 # HTML5 API --- 页面可见性改变(visibilitychange)事件
 
-https://blog.csdn.net/yl02520/article/details/17174107
+[https://blog.csdn.net/yl02520/article/details/17174107](https://blog.csdn.net/yl02520/article/details/17174107)
 
 visibilitychange 事件是浏览器新添加的一个事件，当浏览器的某个标签页切换到后台，或从后台切换到前台时就会触发该消息
 

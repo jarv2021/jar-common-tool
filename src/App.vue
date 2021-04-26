@@ -22,6 +22,11 @@ export default {
       list: [
         {
           id: Math.random(),
+          type: "markdom",
+          name: "查询资料"
+        },
+        {
+          id: Math.random(),
           type: "car",
           name: "车牌号选择器"
         },
@@ -35,12 +40,7 @@ export default {
   },
   methods: {
     appClick(item) {
-      if (item.type === "car") {
-        this.$router.push("car");
-      }
-      if (item.type === "pdf") {
-        this.$router.push("pdf");
-      }
+      this.$router.push(item.type);
     }
   }
 };

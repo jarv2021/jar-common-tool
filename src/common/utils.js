@@ -1,6 +1,5 @@
 // 根据时间戳获取年月日时分秒
-// 根据时间戳获取年月日时分秒
-function getYMDHMS(time) {
+export function getYMDHMS(time) {
   var year = time.getFullYear(),
     month = time.getMonth() + 1,
     date = time.getDate(),
@@ -34,7 +33,7 @@ function getYMDHMS(time) {
   }; //不想要对象的情况下 直接返回 //return year+'年'+ month+'月'+date+'日'+hours+':'+minute+':'+second
 }
 
-function isNumber(val) {
+export function isNumber(val) {
   var regPos = /^\d+(\.\d+)?$/; //非负浮点数
   var regNeg = /^(-(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*)))$/; //负浮点数
   if (regPos.test(val) || regNeg.test(val)) {
