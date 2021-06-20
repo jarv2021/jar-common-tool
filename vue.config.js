@@ -19,5 +19,8 @@ module.exports = {
       .options({
         raw: true
       });
-  }
+  },
+  transpileDependencies: [
+    /[/\\]node_modules[/\\]pdfjs-dist[/\\]/,
+  ]
 };

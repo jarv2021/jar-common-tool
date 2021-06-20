@@ -8,7 +8,7 @@
       </template>
     </div>
     <div class="app-view">
-      <router-view style="min-height: 90vh;" />
+      <router-view style="min-height: 90vh" />
     </div>
   </div>
 </template>
@@ -23,26 +23,31 @@ export default {
         {
           id: Math.random(),
           type: "markdom",
-          name: "查询资料"
+          name: "查询资料",
         },
         {
           id: Math.random(),
           type: "car",
-          name: "车牌号选择器"
+          name: "车牌号选择器",
         },
         {
           id: Math.random(),
           type: "pdf",
-          name: "pdf阅读组件"
-        }
-      ]
+          name: "pdf阅读组件",
+        },
+        {
+          id: Math.random(),
+          type: "scrollPdf",
+          name: "scrollPdf阅读组件",
+        },
+      ],
     };
   },
   methods: {
     appClick(item) {
       this.$router.push(item.type);
-    }
-  }
+    },
+  },
 };
 </script>
 
