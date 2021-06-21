@@ -13,12 +13,12 @@ export default {
   props: {
     pdfUrl: {
       type: [String],
-      default: "./extre/test.pdf",
+      default: "./extre/test.pdf"
     },
     mode: {
       type: [String],
-      default: "single",
-    },
+      default: "single"
+    }
   },
   data() {
     return {
@@ -31,24 +31,22 @@ export default {
       page_count: 0, //总页数
       maxscale: 2, //最大放大倍数
       minscale: 0.8, //最小放大倍数,
-      renderPDFArr: [],
+      renderPDFArr: []
     };
   },
   methods: {
     renderPage() {},
     //创建
     createPdfContainer(id, className) {
-      // var pdfContainer = document.querySelector(".scroll-pdf-box");
       var canvasNew = document.createElement("canvas");
       canvasNew.id = id;
       canvasNew.className = className;
       return canvasNew;
-      // pdfContainer.appendChild(canvasNew);
     },
     //渲染pdf
     //建议给定pdf宽度
     renderPDF(pdf, i, id) {
-      pdf.getPage(i).then((page) => {
+      pdf.getPage(i).then(page => {
         var scale = 1.5;
         var viewport = page.getViewport({ scale });
 
@@ -66,36 +64,34 @@ export default {
         //
         var renderContext = {
           canvasContext: context,
-          viewport: viewport,
+          viewport: viewport
         };
-        // page.render(renderContext);
-        this.renderPDFArr.push({
-          page,
-          renderContext,
-        });
+        page.render(renderContext);
 
-        // console.info("this.renderPDFArr.length", this.renderPDFArr.length);
-        // console.info("this.pageNum", this.pageNum);
+        // this.renderPDFArr.push({
+        //   page,
+        //   renderContext
+        // });
 
-        if (this.renderPDFArr.length === this.pageNum) {
-          let promiseArr = [];
-          for (let i = 0; i < this.pageNum; i++) {
-            let p = new Promise((resolve) => {
-              let page = this.renderPDFArr[i].page;
-              let renderContext = this.renderPDFArr[i].renderContext;
-              resolve(page.render(renderContext));
-            });
-            promiseArr.push(p);
-          }
+        // if (this.renderPDFArr.length === this.pageNum) {
+        //   let promiseArr = [];
+        //   for (let i = 0; i < this.pageNum; i++) {
+        //     let p = new Promise(resolve => {
+        //       let page = this.renderPDFArr[i].page;
+        //       let renderContext = this.renderPDFArr[i].renderContext;
+        //       resolve(page.render(renderContext));
+        //     });
+        //     promiseArr.push(p);
+        //   }
 
-          Promise.all(promiseArr)
-            .then((result) => {
-              console.log("success", result);
-            })
-            .catch((error) => {
-              console.log("error", error);
-            });
-        }
+        //   Promise.all(promiseArr)
+        //     .then(result => {
+        //       console.log("success", result);
+        //     })
+        //     .catch(error => {
+        //       console.log("error", error);
+        //     });
+        // }
       });
     },
     //创建和pdf页数等同的canvas数
@@ -112,8 +108,12 @@ export default {
     //读取pdf文件，并加载到页面中
     loadPDF(fileURL) {
       let url = fileURL;
-      var loadingTask = pdfjsLib.getDocument(url);
-      loadingTask.promise.then((pdf) => {
+      var loadingTask = pdfjsLib.getDocument({
+        url,
+        // 65536 * 16
+        rangeChunkSize: 65536 * 16
+      });
+      loadingTask.promise.then(pdf => {
         // console.info("loadingTask", pdf);
         //用 promise 获取页面
         var id = "";
@@ -121,6 +121,7 @@ export default {
         var pageNum = pdf.numPages;
         this.pageNum = pdf.numPages;
         // console.info("pageNum", pageNum);
+        this.$emit("num-pages", pdf.numPages);
         //根据页码创建画布
         this.createSeriesCanvas(pageNum, idTemplate);
         //将pdf渲染到画布上去
@@ -129,12 +130,12 @@ export default {
           this.renderPDF(pdf, i, id);
         }
       });
-    },
+    }
   },
   computed: {},
   created() {
     this.loadPDF(this.pdfUrl);
-  },
+  }
 };
 </script>
 
