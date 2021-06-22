@@ -69,7 +69,7 @@ export default {
     .in-app {
       .utilBtn();
 
-      width: 100px;
+      // width: 100px;
       height: 30px;
 
       margin-top: 15px;
