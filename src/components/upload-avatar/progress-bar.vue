@@ -1,0 +1,196 @@
+<template>
+  <div class="progress-container-box">
+    <div class="less-box" @click="enlessFun" />
+    <div class="progress-box">
+      <div class="progress-btn" @mousedown="progressMousedown" />
+      <div class="progress-mask" />
+    </div>
+    <div class="more-box" @click="enlargeFun" />
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    progressNum: [String, Number]
+  },
+  data() {
+    return {
+      maxRangX: ""
+    };
+  },
+  watch: {
+    progressNum: {
+      handler(newVal, oldVal) {
+        this.handleProgressNum(newVal);
+      },
+      deep: true
+    }
+  },
+  mounted() {
+    this.initSetting();
+  },
+  destroyed() {
+    let target = document.querySelector(".progress-container-box");
+    target &&
+      target.removeEventListener("mousemove", this.progressMousemove, false);
+  },
+  methods: {
+    initSetting() {},
+    enlessFun() {
+      // this.$emit('enless')
+    },
+    enlargeFun() {
+      // this.$emit('enlarge')
+    },
+    progressMousedown(event) {
+      this.leftVal = event.clientX - event.target.offsetLeft;
+      this.setDocumentListten();
+    },
+    setMaxRangX() {
+      const scroll = document.querySelector(".progress-box");
+      const bar = document.querySelector(".progress-btn");
+      this.maxRangX = scroll.offsetWidth - bar.offsetWidth || 216;
+    },
+    setDocumentListten() {
+      document
+        .querySelector(".progress-container-box")
+        .addEventListener("mousemove", this.progressMousemove, false);
+      // document.addEventListener('mousemove', this.progressMousemove, false)
+      document.addEventListener("mouseup", this.progressMouseup, false);
+    },
+    progressMouseup(event) {
+      event.preventDefault();
+      // console.info('progressMouseup', event)
+      // document.removeEventListener('mousemove', this.progressMousemove, false)
+      document
+        .querySelector(".progress-container-box")
+        .removeEventListener("mousemove", this.progressMousemove, false);
+    },
+    progressMousemove(event) {
+      if (event.clientX > 1069) return;
+
+      this.setMaxRangX();
+
+      this.setRateView(event);
+    },
+    setRateView(event) {
+      const scroll = document.querySelector(".progress-box");
+      const bar = document.querySelector(".progress-btn");
+
+      let barleft = 0;
+      const leftVal = this.leftVal;
+      barleft = event.clientX - leftVal;
+
+      if (barleft < 0) barleft = 0;
+      else if (barleft > this.maxRangX) {
+        barleft = scroll.offsetWidth - bar.offsetWidth;
+      }
+
+      let rate = barleft / (scroll.offsetWidth - bar.offsetWidth);
+
+      // const direct = event.screenX > 360 ? 'right' : 'left'
+
+      // console.info('event', event)
+
+      // mask.style.width = barleft + 'px'
+      // bar.style.left = barleft + 'px'
+
+      if (rate <= 0.001) rate = 0;
+      if (rate >= 0.98) rate = 1;
+      // if (direct === 'left') rate = -rate
+
+      // console.info("setRateView", rate);
+
+      this.$emit("progressResult", rate);
+      // this.handleProgressNum(rate);
+    },
+    handleProgressNum(num) {
+      // console.info('handleProgressNum', num)
+      num = Math.abs(num);
+      const scroll = document.querySelector(".progress-box");
+      const bar = document.querySelector(".progress-btn");
+      const mask = document.querySelector(".progress-mask");
+      this.setMaxRangX();
+
+      let barleft = num * this.maxRangX;
+      if (barleft < 0) barleft = 0;
+      else if (barleft > this.maxRangX) {
+        barleft = scroll.offsetWidth - bar.offsetWidth;
+      }
+      mask.style.width = barleft + "px";
+      bar.style.left = barleft + "px";
+    }
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.progress-container-box {
+  width: 100%;
+  height: 64px;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+
+  box-sizing: border-box;
+  padding: 0 82px;
+  border-radius: 0 0 20px 20px;
+
+  .less-box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-image: url("./avatar_pop_enless.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    // cursor: pointer;
+  }
+
+  .more-box {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    background-image: url("./avatar_pop_enlarge.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+    // cursor: pointer;
+  }
+
+  .progress-box {
+    width: 240px;
+    height: 6px;
+    background: #cccccc;
+    border-radius: 3px;
+
+    margin: 0 24px;
+
+    position: relative;
+
+    .progress-btn {
+      width: 24px;
+      height: 24px;
+      background: #ffffff;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.16);
+      border-radius: 50%;
+
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      cursor: pointer;
+    }
+
+    .progress-mask {
+      width: 0;
+      height: 6px;
+      background: #ff97c4;
+      border-radius: 3px;
+    }
+  }
+}
+</style>

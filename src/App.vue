@@ -23,31 +23,36 @@ export default {
         {
           id: Math.random(),
           type: "markdom",
-          name: "查询资料",
+          name: "查询资料"
         },
         {
           id: Math.random(),
           type: "car",
-          name: "车牌号选择器",
+          name: "车牌号选择器"
         },
         {
           id: Math.random(),
           type: "pdf",
-          name: "pdf阅读组件",
+          name: "pdf阅读组件"
         },
         {
           id: Math.random(),
           type: "scrollPdf",
-          name: "scrollPdf阅读组件",
+          name: "scrollPdf阅读组件"
         },
-      ],
+        {
+          id: Math.random(),
+          type: "uploadAvatar",
+          name: "uploadAvatar头像上传"
+        }
+      ]
     };
   },
   methods: {
     appClick(item) {
       this.$router.push(item.type);
-    },
-  },
+    }
+  }
 };
 </script>
 

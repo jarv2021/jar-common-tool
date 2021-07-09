@@ -23,6 +23,11 @@ const constantRoter = [
     path: "/markdom",
     component: () => import("@/components/markdom"),
     name: "markdom"
+  },
+  {
+    path: "/uploadAvatar",
+    component: () => import("@/components/upload-avatar"),
+    name: "uploadAvatar"
   }
 ];
 

@@ -30,3 +30,32 @@ npm run serve
 ## 2. 轻量 pdf 阅读组件 （vue 版）
 
 ### 组件名称 : onlinePdf
+
+## 3. 头像上传组件
+
+```
+   使用方式：
+
+    <uploadAvatar
+      ref="uploadAvatar"
+      :resultToBlob="true"
+      :showProgressBar="true"
+      :showTopBox="true"
+      @success="successFun"
+    />
+
+   触发上传文件：
+
+   this.$refs.uploadAvatar.chooseFile();
+
+```
+
+```
+  参数：
+        resultToBlob =》 设置输出的是img文件还是blob文件
+        showProgressBar =》 设置是否显示
+  事件：
+
+
+
+```
