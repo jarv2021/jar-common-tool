@@ -14,20 +14,24 @@
       <div class="dialog-mask" @click="closeDialog"></div>
       <div class="cropper-show-box">
         <topBox @save="saveFun" @close="closeFun" v-if="showTopBox" />
+        <slot name="topBox" />
         <div :style="cropperBoxStyle" class="crop-container">
           <img :src="imgUrl" class="crop-img" />
         </div>
         <progressBar
           v-if="showProgressBar"
+          :wheelConfig="wheelConfig"
           :progressNum="progressNum"
           @progressResult="progressResultFun"
         />
+        <slot name="footBox" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.css";
 
@@ -36,7 +40,6 @@ import topBox from "./top-box";
 
 export default {
   props: {
-    resultToBlob: [Boolean],
     showProgressBar: {
       type: Boolean,
       default: false
@@ -45,7 +48,7 @@ export default {
       type: Boolean,
       default: false
     },
-    resultImgQuality: {
+    resultQuality: {
       type: [Object],
       default: () => {
         return {
@@ -58,6 +61,17 @@ export default {
           fillColor: "#fff",
           imageSmoothingEnabled: true,
           imageSmoothingQuality: "high"
+        };
+      }
+    },
+    uploadConfig: {
+      type: [Object],
+      default: () => {
+        return {
+          url: "",
+          method: "post",
+          resultToBlob: true,
+          header: {}
         };
       }
     },
@@ -140,18 +154,21 @@ export default {
     }
   },
   destroyed() {
-    this.setWheel(".crop-container", "remove");
+    this.closeDialog();
   },
   mounted() {},
   methods: {
-    cropStart(el) {
+    cropingStart(el) {
       let that = this;
       let target = document.querySelector(el);
       this.myCropper = new Cropper(target, {
         ...that.cropperConfig,
         ready: event => {
-          // console.info("ready", event);
-          this.myCropper.zoomTo(0.4, [0, 0]);
+          that.progressNum = null;
+          let rate = that.wheelConfig.maxZoom / 2;
+          // console.info("ready", rate);
+          that.setZoom(rate);
+          that.$forceUpdate();
         },
         crop: event => {
           that.handleCrop(event);
@@ -179,8 +196,8 @@ export default {
     handleZoom(data) {
       let ratio = data.detail.ratio;
       this.progressNum = ratio;
+      // console.info("this.progressNum", this.progressNum);
       this.$emit("zoomRatio", ratio);
-      // console.info("handleZoom", ratio);
     },
     chooseFile() {
       const active = document.getElementById("uploadsId");
@@ -191,7 +208,10 @@ export default {
     uploadImg(e) {
       const file = e.target.files[0];
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
-        this.$eltool.warnMsg("图片类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+        // 图片类型必须是.gif,jpeg,jpg,png中的一种
+        this.$emit("cropFail", {
+          message: "图片类型必须是.gif,jpeg,jpg,png中的一种"
+        });
         return false;
       }
       const reader = new FileReader();
@@ -207,33 +227,28 @@ export default {
         this.imgUrl = data;
         this.showDialog = true;
         this.$nextTick(() => {
-          this.cropStart(".crop-img");
+          this.cropingStart(".crop-img");
           this.setWheel(".crop-container", "add");
         });
+      };
+      reader.onerror = e => {
+        this.$emit("cropFail", e);
       };
       // 转化为blob
       reader.readAsArrayBuffer(file);
     },
     closeDialog() {
+      // console.info("closeDialog");
       this.imgUrl = null;
       this.fileValue = null;
       this.showDialog = false;
+
+      this.setWheel(".crop-container", "remove");
+      this.myCropper && this.myCropper.destroy();
+      this.myCropper = null;
     },
     reset() {
       this.myCropper.reset();
-    },
-    setDownload(url, name) {
-      let link = document.createElement("a");
-      //设置下载的文件名
-      link.download = name;
-      link.style.display = "none";
-      //设置下载路径
-      link.href = url;
-      //触发点击
-      document.body.appendChild(link);
-      link.click();
-      //移除节点
-      document.body.removeChild(link);
     },
     setWheel(el, method) {
       let target = document.querySelector(el);
@@ -255,34 +270,56 @@ export default {
     handleWheel(event) {
       // 防止滚动穿透
       event.preventDefault();
-      // console.info("handleWheel", event);
-      let wheelDelta = event.wheelDelta;
-      let step = this.wheelConfig.step;
-      let result =
-        wheelDelta > 0 ? this.progressNum + step : this.progressNum - step;
-      if (result > this.wheelConfig.maxZoom) result = this.wheelConfig.maxZoom;
-      if (result < this.wheelConfig.minZoom) result = this.wheelConfig.minZoom;
-      this.setZoom(result);
+      if (this.cropperConfig.zoomOnWheel === false) {
+        // console.info("handleWheel", event);
+        let wheelDelta = event.wheelDelta;
+        let step = this.wheelConfig.step;
+        let result =
+          wheelDelta > 0 ? this.progressNum + step : this.progressNum - step;
+        if (result > this.wheelConfig.maxZoom)
+          result = this.wheelConfig.maxZoom;
+        if (result < this.wheelConfig.minZoom)
+          result = this.wheelConfig.minZoom;
+        this.setZoom(result);
+      }
     },
-    getCropResult(isEmit = true) {
+    getCropResult() {
+      let that = this;
       var promise = new Promise((resolve, reject) => {
-        if (this.resultToBlob) {
-          this.myCropper
-            .getCroppedCanvas({ ...this.resultImgQuality })
+        if (that.uploadConfig.resultToBlob) {
+          that.myCropper
+            .getCroppedCanvas({ ...that.resultQuality })
             .toBlob(blob => {
-              // console.info("toBlob", blob);
-              isEmit && this.$emit("success", blob);
-              this.closeDialog();
-              resolve(blob);
+              let uploadConfig = that.uploadConfig;
+              let method = uploadConfig.method.trim().toLocaleLowerCase();
+              let header = uploadConfig.header;
+              let url = uploadConfig.url;
+              that.$emit("cropSuccess", blob);
+              if (uploadConfig.url && method === "post") {
+                that
+                  .createRequest(header)
+                  .post(url)
+                  .then(res => {
+                    that.$emit("cropUploadSuccess", res);
+                    resolve(res);
+                  })
+                  .catch(err => {
+                    that.$emit("cropUploadFail", err);
+                    reject(err);
+                  });
+              } else {
+                resolve(blob);
+              }
+              that.closeDialog();
             });
         } else {
           // .toDataURL("image/jpeg");
-          let url = this.myCropper
-            .getCroppedCanvas({ ...this.resultImgQuality })
+          let url = that.myCropper
+            .getCroppedCanvas({ ...that.resultQuality })
             .toDataURL();
           // console.info("getCropResult", url);
-          isEmit && this.$emit("success", url);
-          this.closeDialog();
+          that.$emit("cropSuccess", url);
+          that.closeDialog();
           resolve(url);
         }
       });
@@ -293,14 +330,28 @@ export default {
     },
     progressResultFun(data) {
       // console.info("progressResultFun", data);
-      this.progressNum = data;
-      this.setZoom(data);
+
+      let wheelConfig = this.wheelConfig;
+      let denominator =
+        Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
+      let rate = data * denominator;
+
+      this.progressNum = rate;
+      this.setZoom(rate);
     },
     saveFun() {
       this.getCropResult();
     },
     closeFun() {
       this.closeDialog();
+    },
+    // 统一创建http请求
+    createRequest(header) {
+      const instance = axios.create({
+        header,
+        timeout: 10000
+      });
+      return instance;
     }
   }
 };

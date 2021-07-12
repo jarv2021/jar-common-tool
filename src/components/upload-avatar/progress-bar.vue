@@ -12,7 +12,8 @@
 <script>
 export default {
   props: {
-    progressNum: [String, Number]
+    progressNum: [String, Number],
+    wheelConfig: [Object]
   },
   data() {
     return {
@@ -21,7 +22,7 @@ export default {
   },
   watch: {
     progressNum: {
-      handler(newVal, oldVal) {
+      handler(newVal) {
         this.handleProgressNum(newVal);
       },
       deep: true
@@ -36,7 +37,9 @@ export default {
       target.removeEventListener("mousemove", this.progressMousemove, false);
   },
   methods: {
-    initSetting() {},
+    initSetting() {
+      this.handleProgressNum(this.progressNum);
+    },
     enlessFun() {
       // this.$emit('enless')
     },
@@ -107,17 +110,23 @@ export default {
     },
     handleProgressNum(num) {
       // console.info('handleProgressNum', num)
-      num = Math.abs(num);
-      const scroll = document.querySelector(".progress-box");
+      let wheelConfig = this.wheelConfig;
+      let denominator =
+        Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
+
+      num = Math.abs(num) / denominator;
+
       const bar = document.querySelector(".progress-btn");
       const mask = document.querySelector(".progress-mask");
       this.setMaxRangX();
 
+      // this.maxRangX = scroll.offsetWidth - bar.offsetWidth
       let barleft = num * this.maxRangX;
       if (barleft < 0) barleft = 0;
       else if (barleft > this.maxRangX) {
-        barleft = scroll.offsetWidth - bar.offsetWidth;
+        barleft = this.maxRangX;
       }
+
       mask.style.width = barleft + "px";
       bar.style.left = barleft + "px";
     }

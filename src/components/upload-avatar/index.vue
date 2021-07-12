@@ -6,7 +6,13 @@
       :resultToBlob="true"
       :showProgressBar="true"
       :showTopBox="true"
-      @success="successFun"
+      :uploadConfig="uploadConfig"
+      :wheelConfig="wheelConfig"
+      @cropSuccess="cropSuccess"
+      @cropFail="cropFail"
+      @cropUploadSuccess="cropUploadSuccess"
+      @cropUploadFail="cropUploadFail"
+      @zoomRatio="zoomRatio"
     />
   </div>
 </template>
@@ -21,15 +27,37 @@ export default {
   },
   data() {
     return {
-      progressNum: 0
+      progressNum: 0,
+      wheelConfig: {
+        minZoom: 0,
+        maxZoom: 2,
+        step: 0.1
+      },
+      uploadConfig: {
+        url: "https://www.baidu.com",
+        method: "post",
+        resultToBlob: true
+      }
     };
   },
   methods: {
     uploadImg() {
       this.$refs.uploadAvatar.chooseFile();
     },
-    successFun(data) {
-      console.info("successFun", data);
+    cropSuccess(data) {
+      console.info("cropSuccess", data);
+    },
+    cropFail(data) {
+      console.info("cropFail", data);
+    },
+    cropUploadSuccess(data) {
+      console.info("cropUploadSuccess", data);
+    },
+    cropUploadFail(data) {
+      console.info("cropUploadFail", data);
+    },
+    zoomRatio(data) {
+      // console.info("zoomRatio", data);
     }
   }
 };
