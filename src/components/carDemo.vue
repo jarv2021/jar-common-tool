@@ -38,17 +38,32 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@import url("../styles/mixin");
+<style rel="stylesheet/scss" lang="scss" scoped>
+@mixin utilBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+
 .car-box {
   margin: 15px;
   .trigger {
-    .utilBtn();
+    @include utilBtn();
 
     width: 100px;
   }
   .clear-btn {
-    .utilBtn();
+    @include utilBtn();
 
     width: 100px;
     margin-top: 30px;

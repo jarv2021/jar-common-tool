@@ -139,7 +139,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .scroll-pdf-box {
   // width: 500px;
   // height: 500px;

@@ -61,8 +61,24 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-@import url("./styles/mixin");
+<style rel="stylesheet/scss" lang="scss" scoped>
+@mixin utilBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  cursor: pointer;
+  background: white;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+
 #app {
   width: 100%;
   height: 100%;
@@ -77,7 +93,7 @@ export default {
 
   .app-boxs {
     .in-app {
-      .utilBtn();
+      @include utilBtn();
 
       // width: 100px;
       height: 30px;

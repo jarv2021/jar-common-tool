@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .markdom-container {
   box-sizing: border-box;
   padding: 10px;

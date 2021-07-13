@@ -134,7 +134,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .progress-container-box {
   width: 100%;
   height: 64px;

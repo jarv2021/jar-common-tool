@@ -212,7 +212,7 @@ export default {
   }
 };
 </script>
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .container {
   cursor: pointer;
   user-select: none;

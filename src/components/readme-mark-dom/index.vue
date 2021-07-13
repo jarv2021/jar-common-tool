@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .readme-mark-dom {
   margin: 20px;
 }

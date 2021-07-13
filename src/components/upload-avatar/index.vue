@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .demo-box {
   margin: 20px;
 }

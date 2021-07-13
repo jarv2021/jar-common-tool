@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style rel="stylesheet/scss" lang="scss" scoped>
 .top-box {
   display: flex;
   align-items: center;
