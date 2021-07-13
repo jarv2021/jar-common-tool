@@ -294,11 +294,16 @@ export default {
               let method = uploadConfig.method.trim().toLocaleLowerCase();
               let header = uploadConfig.header;
               let url = uploadConfig.url;
+
               that.$emit("cropSuccess", blob);
               if (uploadConfig.url && method === "post") {
+                const param = new FormData();
+                param.append("file", blob);
                 that
                   .createRequest(header)
-                  .post(url)
+                  .post(url, param, {
+                    headers: { "Content-Type": "multipart/form-data" }
+                  })
                   .then(res => {
                     that.$emit("cropUploadSuccess", res);
                     resolve(res);

@@ -34,7 +34,8 @@ export default {
         step: 0.1
       },
       uploadConfig: {
-        url: "https://www.baidu.com",
+        // https://test1.lovense.com/cam-model-web/common/uploadImage?ctoken=PpaH3lgPt-zl0NEMmKxEy6eW-yQYHRFJHdIYscF2S9GZBHchUFTAW2Jq6rk-9-vqpz3NCmxtF3jwvAg1_Md3BRdUrEIq25Ws-xdiEP0d8L1p21bD9g9J39MI7UP2vuCvRbl-4i4zx1o27T8lkyRBNg
+        url: "",
         method: "post",
         resultToBlob: true
       }
