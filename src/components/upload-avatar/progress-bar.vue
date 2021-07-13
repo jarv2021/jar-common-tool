@@ -56,9 +56,9 @@ export default {
       this.maxRangX = scroll.offsetWidth - bar.offsetWidth || 216;
     },
     setDocumentListten() {
-      document
-        .querySelector(".progress-container-box")
-        .addEventListener("mousemove", this.progressMousemove, false);
+      let target = document.querySelector(".progress-container-box");
+      target &&
+        target.addEventListener("mousemove", this.progressMousemove, false);
       // document.addEventListener('mousemove', this.progressMousemove, false)
       document.addEventListener("mouseup", this.progressMouseup, false);
     },
@@ -66,9 +66,9 @@ export default {
       event.preventDefault();
       // console.info('progressMouseup', event)
       // document.removeEventListener('mousemove', this.progressMousemove, false)
-      document
-        .querySelector(".progress-container-box")
-        .removeEventListener("mousemove", this.progressMousemove, false);
+      let target = document.querySelector(".progress-container-box");
+      target &&
+        target.removeEventListener("mousemove", this.progressMousemove, false);
     },
     progressMousemove(event) {
       if (event.clientX > 1069) return;
@@ -127,8 +127,8 @@ export default {
         barleft = this.maxRangX;
       }
 
-      mask.style.width = barleft + "px";
-      bar.style.left = barleft + "px";
+      if (mask) mask.style.width = barleft + "px";
+      if (bar) bar.style.left = barleft + "px";
     }
   }
 };
