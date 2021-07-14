@@ -96,6 +96,7 @@ export default {
       @include utilBtn();
 
       // width: 100px;
+      white-space: nowrap;
       height: 30px;
 
       margin-top: 15px;

@@ -1,7 +1,7 @@
 <template>
   <div class="progress-container-box">
     <div class="less-box" @click="enlessFun" />
-    <div class="progress-box">
+    <div class="progress-box" @click="progressClick">
       <div class="progress-btn" @mousedown="progressMousedown" />
       <div class="progress-mask" />
     </div>
@@ -56,7 +56,8 @@ export default {
       this.maxRangX = scroll.offsetWidth - bar.offsetWidth || 216;
     },
     setDocumentListten() {
-      let target = document.querySelector(".progress-container-box");
+      let target = document.querySelector("body");
+      // let target = document.querySelector(".progress-container-box");
       target &&
         target.addEventListener("mousemove", this.progressMousemove, false);
       // document.addEventListener('mousemove', this.progressMousemove, false)
@@ -66,7 +67,8 @@ export default {
       event.preventDefault();
       // console.info('progressMouseup', event)
       // document.removeEventListener('mousemove', this.progressMousemove, false)
-      let target = document.querySelector(".progress-container-box");
+      // let target = document.querySelector(".progress-container-box");
+      let target = document.querySelector("body");
       target &&
         target.removeEventListener("mousemove", this.progressMousemove, false);
     },
@@ -129,6 +131,13 @@ export default {
 
       if (mask) mask.style.width = barleft + "px";
       if (bar) bar.style.left = barleft + "px";
+    },
+    progressClick(event) {
+      // console.info("event", event);
+      this.setMaxRangX();
+      const bar = document.querySelector(".progress-btn");
+      let rate = (event.offsetX - bar.offsetWidth / 2) / this.maxRangX;
+      this.$emit("progressResult", rate);
     }
   }
 };
@@ -178,6 +187,7 @@ export default {
     margin: 0 24px;
 
     position: relative;
+    cursor: pointer;
 
     .progress-btn {
       width: 24px;
