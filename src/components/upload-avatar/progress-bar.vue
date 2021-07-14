@@ -12,8 +12,7 @@
 <script>
 export default {
   props: {
-    progressNum: [String, Number],
-    wheelConfig: [Object]
+    progressNum: [String, Number]
   },
   data() {
     return {
@@ -71,14 +70,13 @@ export default {
         target.removeEventListener("mousemove", this.progressMousemove, false);
     },
     progressMousemove(event) {
-      this.setMaxRangX();
-
       this.setRateView(event);
     },
     setRateView(event) {
       const scroll = document.querySelector(".progress-box");
       const bar = document.querySelector(".progress-btn");
 
+      this.setMaxRangX();
       let barleft = 0;
       const leftVal = this.leftVal;
       barleft = event.clientX - leftVal;
@@ -90,17 +88,10 @@ export default {
 
       let rate = barleft / (scroll.offsetWidth - bar.offsetWidth);
 
-      if (rate <= 0.001) rate = 0;
-      if (rate >= 0.98) rate = 1;
-
       this.$emit("progressResult", rate);
     },
     handleProgressNum(num) {
-      let wheelConfig = this.wheelConfig;
-      let denominator =
-        Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
-
-      num = Math.abs(num) / denominator;
+      num = Math.abs(num);
 
       const bar = document.querySelector(".progress-btn");
       const mask = document.querySelector(".progress-mask");

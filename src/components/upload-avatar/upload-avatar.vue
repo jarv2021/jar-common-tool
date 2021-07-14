@@ -20,7 +20,6 @@
         </div>
         <progressBar
           v-if="showProgressBar"
-          :wheelConfig="wheelConfig"
           :progressNum="progressNum"
           @progressResult="progressResultFun"
         />
@@ -113,6 +112,7 @@ export default {
       type: [Object],
       default: () => {
         return {
+          customize: false,
           minZoom: 0,
           maxZoom: 1,
           step: 0.1
@@ -156,7 +156,9 @@ export default {
   destroyed() {
     this.closeDialog();
   },
-  mounted() {},
+  mounted() {
+    this.copyWheelConfig = JSON.parse(JSON.stringify(this.wheelConfig));
+  },
   methods: {
     cropingStart(el) {
       let that = this;
@@ -164,10 +166,22 @@ export default {
       this.myCropper = new Cropper(target, {
         ...that.cropperConfig,
         ready: event => {
-          that.progressNum = null;
-          let rate = that.wheelConfig.maxZoom / 2;
-          // console.info("ready", rate);
-          that.setZoom(rate);
+          let copyWheelConfig = that.copyWheelConfig;
+          let zoom = 0.5;
+          if (!copyWheelConfig.customize) {
+            let naturalHeight = event.target.naturalHeight;
+            let naturalWidth = event.target.naturalWidth;
+            let cropperConfig = that.cropperConfig;
+
+            let targetVal =
+              naturalHeight > naturalWidth ? naturalWidth : naturalHeight;
+            copyWheelConfig.minZoom = cropperConfig.minCropBoxWidth / targetVal;
+            copyWheelConfig.maxZoom = copyWheelConfig.minZoom + 2;
+            zoom = copyWheelConfig.minZoom;
+            console.info("copyWheelConfig", copyWheelConfig);
+          }
+          // let rate = targetVal / cropperConfig.minCropBoxWidth;
+          that.setZoom(zoom);
           that.$forceUpdate();
         },
         crop: event => {
@@ -184,19 +198,19 @@ export default {
         }
       });
     },
-    handleCrop(data) {
+    handleCrop() {
       // console.info("handleCrop", data);
     },
-    handleCropend(data) {
+    handleCropend() {
       // console.info("handleCropend", data);
     },
-    handleMove(data) {
+    handleMove() {
       // console.info("handleMove", data);
     },
     handleZoom(data) {
       let ratio = data.detail.ratio;
-      this.progressNum = ratio;
-      // console.info("this.progressNum", this.progressNum);
+      this.ratio = ratio;
+      this.setProgressNum();
       this.$emit("zoomRatio", ratio);
     },
     chooseFile() {
@@ -273,13 +287,12 @@ export default {
       if (this.cropperConfig.zoomOnWheel === false) {
         // console.info("handleWheel", event);
         let wheelDelta = event.wheelDelta;
-        let step = this.wheelConfig.step;
-        let result =
-          wheelDelta > 0 ? this.progressNum + step : this.progressNum - step;
-        if (result > this.wheelConfig.maxZoom)
-          result = this.wheelConfig.maxZoom;
-        if (result < this.wheelConfig.minZoom)
-          result = this.wheelConfig.minZoom;
+        let step = this.copyWheelConfig.step;
+        let result = wheelDelta > 0 ? this.ratio + step : this.ratio - step;
+        if (result > this.copyWheelConfig.maxZoom)
+          result = this.copyWheelConfig.maxZoom;
+        if (result < this.copyWheelConfig.minZoom)
+          result = this.copyWheelConfig.minZoom;
         this.setZoom(result);
       }
     },
@@ -334,15 +347,7 @@ export default {
       this.myCropper.zoomTo(val, [0, 0]);
     },
     progressResultFun(data) {
-      // console.info("progressResultFun", data);
-
-      let wheelConfig = this.wheelConfig;
-      let denominator =
-        Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
-      let rate = data * denominator;
-
-      this.progressNum = rate;
-      this.setZoom(rate);
+      this.setZoom(this.getRate(data));
     },
     saveFun() {
       this.getCropResult();
@@ -357,6 +362,23 @@ export default {
         timeout: 10000
       });
       return instance;
+    },
+    setProgressNum() {
+      let wheelConfig = this.copyWheelConfig;
+      let denominator =
+        Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
+      let rate = Math.abs(this.ratio - wheelConfig.minZoom) / denominator;
+      this.progressNum = rate;
+    },
+    getRate(data) {
+      let rate = 0;
+      let wheelConfig = this.copyWheelConfig;
+      let minVal = wheelConfig.minZoom;
+      rate =
+        minVal +
+        data *
+          Math.abs(Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom));
+      return rate;
     }
   }
 };
@@ -402,6 +424,14 @@ export default {
 
       .option-box {
         // margin-top: 15px;
+      }
+
+      .crop-container {
+        // /deep/ .cropper-crop-box {
+        //   width: 400px !important;
+        //   height: 400px !important;
+        //   transform: translateX(50px) translateY(50px) !important;
+        // }
       }
     }
   }
