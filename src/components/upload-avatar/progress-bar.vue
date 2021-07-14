@@ -32,7 +32,7 @@ export default {
     this.initSetting();
   },
   destroyed() {
-    let target = document.querySelector(".progress-container-box");
+    let target = document.querySelector("body");
     target &&
       target.removeEventListener("mousemove", this.progressMousemove, false);
   },
@@ -65,16 +65,12 @@ export default {
     },
     progressMouseup(event) {
       event.preventDefault();
-      // console.info('progressMouseup', event)
-      // document.removeEventListener('mousemove', this.progressMousemove, false)
       // let target = document.querySelector(".progress-container-box");
       let target = document.querySelector("body");
       target &&
         target.removeEventListener("mousemove", this.progressMousemove, false);
     },
     progressMousemove(event) {
-      if (event.clientX > 1069) return;
-
       this.setMaxRangX();
 
       this.setRateView(event);
@@ -94,24 +90,12 @@ export default {
 
       let rate = barleft / (scroll.offsetWidth - bar.offsetWidth);
 
-      // const direct = event.screenX > 360 ? 'right' : 'left'
-
-      // console.info('event', event)
-
-      // mask.style.width = barleft + 'px'
-      // bar.style.left = barleft + 'px'
-
       if (rate <= 0.001) rate = 0;
       if (rate >= 0.98) rate = 1;
-      // if (direct === 'left') rate = -rate
-
-      // console.info("setRateView", rate);
 
       this.$emit("progressResult", rate);
-      // this.handleProgressNum(rate);
     },
     handleProgressNum(num) {
-      // console.info('handleProgressNum', num)
       let wheelConfig = this.wheelConfig;
       let denominator =
         Number(wheelConfig.maxZoom) - Number(wheelConfig.minZoom);
@@ -122,7 +106,6 @@ export default {
       const mask = document.querySelector(".progress-mask");
       this.setMaxRangX();
 
-      // this.maxRangX = scroll.offsetWidth - bar.offsetWidth
       let barleft = num * this.maxRangX;
       if (barleft < 0) barleft = 0;
       else if (barleft > this.maxRangX) {
@@ -133,11 +116,15 @@ export default {
       if (bar) bar.style.left = barleft + "px";
     },
     progressClick(event) {
-      // console.info("event", event);
-      this.setMaxRangX();
-      const bar = document.querySelector(".progress-btn");
-      let rate = (event.offsetX - bar.offsetWidth / 2) / this.maxRangX;
-      this.$emit("progressResult", rate);
+      if (
+        event.target.className === "progress-box" ||
+        event.target.className === "progress-mask"
+      ) {
+        this.setMaxRangX();
+        const bar = document.querySelector(".progress-btn");
+        let rate = (event.offsetX - bar.offsetWidth / 2) / this.maxRangX;
+        this.$emit("progressResult", rate);
+      }
     }
   }
 };
