@@ -125,6 +125,8 @@ minCropBoxHeight: 400
 
 ```
 默认值
+// 是否使用自定义缩放值，如果是false则该组件自行设置
+customize：false
 // 缩放最小值
 minZoom: 0,
 // 缩放最大值
