@@ -84,11 +84,6 @@ export default {
           dragMode: "move",
           // 是否显示雪花背景
           background: true,
-          initialAspectRatio: 1,
-          // aspectRatio—-裁剪框的宽高比
-          aspectRatio: 1,
-          // 设置裁剪框为固定的宽高比
-          autoCropArea: 1,
           // zoomOnWheel–是否可以通过移动鼠标来放大图像。
           zoomOnWheel: false,
           // cropBoxMovable—是否通过拖拽来移动剪裁框。
