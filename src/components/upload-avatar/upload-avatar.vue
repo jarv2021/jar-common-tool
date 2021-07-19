@@ -87,7 +87,7 @@ export default {
           // zoomOnWheel–是否可以通过移动鼠标来放大图像。
           zoomOnWheel: false,
           // cropBoxMovable—是否通过拖拽来移动剪裁框。
-          cropBoxMovable: false,
+          cropBoxMovable: true,
           // cropBoxResizable—是否通过拖动来调整剪裁框的大小。
           cropBoxResizable: false,
           // 辅助中心点
@@ -97,9 +97,9 @@ export default {
           // 设置鼠标滚轮缩放的灵敏度 默认 0.1
           wheelZoomRatio: 0.1,
           // 裁剪框最小宽度
-          minCropBoxWidth: 400,
+          minCropBoxWidth: 440,
           // 裁剪框最小高度
-          minCropBoxHeight: 400
+          minCropBoxHeight: 440
         };
       }
     },
@@ -427,6 +427,9 @@ export default {
         //   height: 400px !important;
         //   transform: translateX(50px) translateY(50px) !important;
         // }
+        /deep/.cropper-view-box {
+          outline-color: #ff2d89;
+        }
       }
     }
   }
