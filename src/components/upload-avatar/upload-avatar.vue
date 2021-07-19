@@ -79,7 +79,7 @@ export default {
       default: () => {
         return {
           // viewMode—定义cropper的视图模式
-          viewMode: 0,
+          viewMode: 1,
           // dragMode —-定义cropper的拖拽模式。
           dragMode: "move",
           // 是否显示雪花背景
@@ -87,7 +87,7 @@ export default {
           // zoomOnWheel–是否可以通过移动鼠标来放大图像。
           zoomOnWheel: false,
           // cropBoxMovable—是否通过拖拽来移动剪裁框。
-          cropBoxMovable: true,
+          cropBoxMovable: false,
           // cropBoxResizable—是否通过拖动来调整剪裁框的大小。
           cropBoxResizable: false,
           // 辅助中心点
@@ -173,10 +173,16 @@ export default {
             copyWheelConfig.minZoom = cropperConfig.minCropBoxWidth / targetVal;
             copyWheelConfig.maxZoom = copyWheelConfig.minZoom + 2;
             zoom = copyWheelConfig.minZoom;
-            console.info("copyWheelConfig", copyWheelConfig);
+            // console.info("copyWheelConfig", copyWheelConfig);
           }
-          // let rate = targetVal / cropperConfig.minCropBoxWidth;
+
           that.setZoom(zoom);
+
+          that.myCropper.setCropBoxData({
+            width: 440,
+            height: 440
+          });
+
           that.$forceUpdate();
         },
         crop: event => {
@@ -422,12 +428,10 @@ export default {
       }
 
       .crop-container {
-        // /deep/ .cropper-crop-box {
-        //   width: 400px !important;
-        //   height: 400px !important;
-        //   transform: translateX(50px) translateY(50px) !important;
-        // }
         /deep/.cropper-view-box {
+          outline-color: #ff2d89;
+        }
+        ::v-deep.cropper-view-box {
           outline-color: #ff2d89;
         }
       }
