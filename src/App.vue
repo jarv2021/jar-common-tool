@@ -1,24 +1,33 @@
 <template>
   <div id="app">
     <div class="app-boxs">
-      <template v-for="item of list">
-        <div :key="item.id" class="in-app" @click="appClick(item)">
-          {{ item.name }}
-        </div>
-      </template>
+      <div class="info-box">
+        <img class="info-logo" :src="logo" alt="" />
+        <div class="site-name">Components</div>
+        <div class="site-description">一个可以fork的工具库</div>
+      </div>
+      <div class="navlist">
+        <template v-for="item of list">
+          <div :key="item.id" class="in-app" @click="appClick(item)">
+            {{ item.name }}
+          </div>
+        </template>
+      </div>
     </div>
     <div class="app-view">
-      <router-view style="min-height: 90vh" />
+      <router-view style="min-height: 100vh" />
     </div>
   </div>
 </template>
 
 <script>
+import logo from "./assets/logo.png";
 export default {
   name: "App",
   components: {},
   data() {
     return {
+      logo,
       list: [
         {
           id: Math.random(),
@@ -83,35 +92,92 @@ export default {
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  background: black;
-
-  padding: 30px;
 
   box-sizing: border-box;
 
   display: flex;
 
   .app-boxs {
-    .in-app {
-      @include utilBtn();
+    width: 30%;
 
-      // width: 100px;
-      white-space: nowrap;
-      height: 30px;
+    background-size: cover;
+    background-color: #f8f9fa;
 
-      margin-top: 15px;
-      &:first-child {
-        margin-top: 0;
+    .info-box {
+      margin: 100px auto 0 auto;
+      .info-logo {
+        width: 200px;
+        height: 200px;
+
+        max-width: 200px;
+        max-height: 200px;
+
+        display: block;
+        margin: 0 auto;
+      }
+      .site-name {
+        color: #343a40;
+        cursor: pointer;
+        font-family: "Noto Serif", "PT Serif", source-han-serif-sc,
+          "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
+          "Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
+        font-weight: 700;
+        font-size: 28px;
+        letter-spacing: 1px;
+
+        text-align: center;
+
+        &:hover {
+          color: #099268;
+          text-decoration: none;
+          transition: all 0.5s;
+        }
+      }
+      .site-description {
+        text-align: center;
+
+        margin: 15px auto;
+        color: #868e96;
+        font-size: 16px;
+      }
+    }
+
+    .navlist {
+      display: block;
+      margin-top: 23px;
+      font-family: "Noto Serif", "PT Serif", source-han-serif-sc,
+        "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
+        "Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
+      font-weight: 500;
+      font-size: 18px;
+
+      box-sizing: border-box;
+      padding: 0 40px;
+
+      display: grid;
+      grid-template-columns: repeat(2, 50%);
+
+      .in-app {
+        margin: 10px;
+        text-align: left;
+        font-weight: 300;
+        letter-spacing: 1px;
+
+        color: #099268;
+        text-decoration: none;
+        cursor: pointer;
       }
     }
   }
 
   .app-view {
     margin-left: 15px;
-    width: 90%;
-    height: 90%;
-    min-height: 90vh;
-    background: burlywood;
+    width: 70%;
+    height: 100%;
+    max-height: 100vh;
+
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 }
 </style>
