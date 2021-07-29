@@ -1,19 +1,12 @@
 <template>
-  <div class="markdom-container">
-    <JS />
-  </div>
+  <div class="markdom-container"></div>
 </template>
 
 <script>
-import JS from "@markdom/JS.md";
-
 export default {
-  components: {
-    JS
-  },
-  data() {
-    return {};
-  },
+  components: {},
+  data() {},
+  computed: {},
   mounted() {},
   methods: {}
 };

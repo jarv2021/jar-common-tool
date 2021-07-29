@@ -98,7 +98,7 @@ export default {
   display: flex;
 
   .app-boxs {
-    width: 30%;
+    width: 20%;
 
     background-size: cover;
     background-color: #f8f9fa;
@@ -143,8 +143,8 @@ export default {
     }
 
     .navlist {
-      display: block;
-      margin-top: 23px;
+      margin-top: 50px;
+
       font-family: "Noto Serif", "PT Serif", source-han-serif-sc,
         "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
         "Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
@@ -154,8 +154,8 @@ export default {
       box-sizing: border-box;
       padding: 0 40px;
 
-      display: grid;
-      grid-template-columns: repeat(2, 50%);
+      // display: grid;
+      // grid-template-columns: repeat(2, 50%);
 
       .in-app {
         margin: 10px;
@@ -172,7 +172,7 @@ export default {
 
   .app-view {
     margin-left: 15px;
-    width: 70%;
+    flex: 1;
     height: 100%;
     max-height: 100vh;
 

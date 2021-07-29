@@ -5,28 +5,23 @@ Vue.use(Router);
 
 const constantRoter = [
   {
-    path: "/readme",
-    component: () => import("@/components/readme-mark-dom"),
-    name: "readme"
-  },
-  {
     path: "/car",
-    component: () => import("@/components/carDemo"),
+    component: () => import("@/components/car/carDemo"),
     name: "car"
   },
   {
     path: "/pdf",
-    component: () => import("@/components/onlinePdf"),
+    component: () => import("@/components/pdf/onlinePdf"),
     name: "pdf"
   },
   {
     path: "/scrollPdf",
-    component: () => import("@/components/scrollPdf"),
+    component: () => import("@/components/pdf/scrollPdf"),
     name: "pdf"
   },
   {
     path: "/markdom",
-    component: () => import("@/components/markdom"),
+    component: () => import("@/components/markdom/index"),
     name: "markdom"
   },
   {
