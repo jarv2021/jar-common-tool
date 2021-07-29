@@ -31,7 +31,7 @@ export default {
       list: [
         {
           id: Math.random(),
-          type: "readme",
+          type: "markdom",
           name: "组件文档"
         },
         {

@@ -5,6 +5,11 @@ Vue.use(Router);
 
 const constantRoter = [
   {
+    path: "/markdom",
+    component: () => import("@/components/markdom/index"),
+    name: "markdom"
+  },
+  {
     path: "/car",
     component: () => import("@/components/car/carDemo"),
     name: "car"
