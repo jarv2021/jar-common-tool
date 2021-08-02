@@ -3,11 +3,20 @@
 </template>
 
 <script>
+import JS from "./JS.md";
+// import JS from "@markdom/JS.md";
+
 export default {
+  name: "markdom",
   components: {},
-  data() {},
-  computed: {},
-  mounted() {},
+  data() {
+    return {
+      JS
+    };
+  },
+  mounted() {
+    console.info("JS", JS);
+  },
   methods: {}
 };
 </script>

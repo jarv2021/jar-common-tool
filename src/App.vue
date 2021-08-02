@@ -32,11 +32,6 @@ export default {
         {
           id: Math.random(),
           type: "markdom",
-          name: "组件文档"
-        },
-        {
-          id: Math.random(),
-          type: "markdom",
           name: "查询资料"
         },
         {
