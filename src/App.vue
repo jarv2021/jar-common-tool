@@ -31,11 +31,6 @@ export default {
       list: [
         {
           id: Math.random(),
-          type: "markdom",
-          name: "查询资料"
-        },
-        {
-          id: Math.random(),
           type: "car",
           name: "车牌号选择器"
         },
@@ -47,8 +42,18 @@ export default {
         {
           id: Math.random(),
           type: "uploadAvatar",
-          name: "uploadAvatar头像上传"
-        }
+          name: "头像上传"
+        },
+        {
+          id: Math.random(),
+          type: "carousel",
+          name: "简易轮播"
+        },
+        // {
+        //   id: Math.random(),
+        //   type: "markdom",
+        //   name: "查询资料"
+        // }
       ]
     };
   },
@@ -61,23 +66,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@mixin utilBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-
-  cursor: pointer;
-  background: white;
-  &:hover {
-    opacity: 0.9;
-  }
-  &:active {
-    opacity: 0.8;
-  }
-}
-
 #app {
   width: 100%;
   height: 100%;

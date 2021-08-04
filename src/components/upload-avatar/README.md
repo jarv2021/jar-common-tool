@@ -1,10 +1,10 @@
 ## 头像上传组件
 
-！前提模块安装： Cropper，axios
-cropperjs 文档：https://github.com/fengyuanchen/cropperjs
-axios 文档：http://www.axios-js.com/
-
 ```
+   ！前提模块安装： Cropper，axios
+   cropperjs 文档：https://github.com/fengyuanchen/cropperjs
+   axios 文档：http://www.axios-js.com/
+
    使用方式：
     <uploadAvatar ref="uploadAvatar"/>
 

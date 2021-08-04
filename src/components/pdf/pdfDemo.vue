@@ -29,6 +29,7 @@
 <script>
 import onlinePdf from "./onlinePdf";
 import scrollPdf from "./scrollPdf";
+
 export default {
   name: "pdf-container",
   components: {

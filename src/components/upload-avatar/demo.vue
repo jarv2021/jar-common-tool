@@ -3,7 +3,8 @@
     <div class="upload-btn in-btn" @click="uploadImg">upload</div>
     <div class="content-box">
       <div class="article-box">
-        <README />
+        <!-- <README /> -->
+        <MARKDOM :md="README" />
       </div>
       <div class="show-box">
         <img :src="successImgUrl" alt="" />
@@ -28,13 +29,13 @@
 
 <script>
 import uploadAvatar from "./upload-avatar";
+
 import README from "./README.md";
 
 export default {
   name: "uploadAvatarIndex",
   components: {
-    uploadAvatar,
-    README
+    uploadAvatar
   },
   data() {
     return {
@@ -51,9 +52,11 @@ export default {
         method: "post",
         resultToBlob: false
       },
-      successImgUrl: ""
+      successImgUrl: "",
+      README
     };
   },
+  mounted() {},
   methods: {
     uploadImg() {
       this.$refs.uploadAvatar.chooseFile();
