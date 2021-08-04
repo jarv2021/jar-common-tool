@@ -1,6 +1,15 @@
 <template>
   <div class="demo-box">
     <div class="upload-btn in-btn" @click="uploadImg">upload</div>
+    <div class="content-box">
+      <div class="article-box">
+        <README />
+      </div>
+      <div class="show-box">
+        <img :src="successImgUrl" alt="" />
+      </div>
+    </div>
+
     <uploadAvatar
       ref="uploadAvatar"
       :resultToBlob="true"
@@ -19,11 +28,13 @@
 
 <script>
 import uploadAvatar from "./upload-avatar";
+import README from "./README.md";
 
 export default {
   name: "uploadAvatarIndex",
   components: {
-    uploadAvatar
+    uploadAvatar,
+    README
   },
   data() {
     return {
@@ -39,7 +50,8 @@ export default {
         url: "",
         method: "post",
         resultToBlob: false
-      }
+      },
+      successImgUrl: ""
     };
   },
   methods: {
@@ -47,17 +59,18 @@ export default {
       this.$refs.uploadAvatar.chooseFile();
     },
     cropSuccess(data) {
-      console.info("cropSuccess", data);
-      this.setDownload(data, "cropSuccess");
+      // console.info("cropSuccess", data);
+      this.successImgUrl = data;
     },
     cropFail(data) {
-      console.info("cropFail", data);
+      // console.info("cropFail", data);
     },
     cropUploadSuccess(data) {
-      console.info("cropUploadSuccess", data);
+      // console.info("cropUploadSuccess", data);
+      this.successImgUrl = data;
     },
     cropUploadFail(data) {
-      console.info("cropUploadFail", data);
+      // console.info("cropUploadFail", data);
     },
     zoomRatio(data) {
       // console.info("zoomRatio", data);
@@ -82,27 +95,26 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 .demo-box {
   margin: 20px;
+
+  .content-box {
+    margin-top: 15px;
+
+    display: flex;
+    align-items: center;
+
+    .article-box {
+      max-width: 800px;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .show-box {
+      margin-left: 15px;
+    }
+  }
 }
+
 .in-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-
-  cursor: pointer;
-  &:hover {
-    opacity: 0.9;
-  }
-  &:active {
-    opacity: 0.8;
-  }
-
-  width: 100px;
-  height: 50px;
-  background: white;
-  border-radius: 8px;
-
-  user-select: none;
+  @include primaryBtn();
 }
 </style>

@@ -39,28 +39,11 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@mixin utilBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-
-  cursor: pointer;
-  &:hover {
-    opacity: 0.9;
-  }
-  &:active {
-    opacity: 0.8;
-  }
-}
-
 .car-box {
   margin: 15px;
   .trigger {
     @include utilBtn();
-
-    width: 100px;
+    @include primaryBtn();
   }
   .clear-btn {
     @include utilBtn();

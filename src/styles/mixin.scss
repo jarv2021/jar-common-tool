@@ -1,0 +1,53 @@
+@mixin utilBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  cursor: pointer;
+  &:hover {
+    opacity: 0.9;
+  }
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+@mixin primaryBtn {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+
+  color: #fff;
+  background-color: #409eff;
+  border-color: #409eff;
+}
+
+@mixin greenTextBtn {
+  font-weight: 300;
+  letter-spacing: 1px;
+
+  color: #099268;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.9;
+  }
+}

@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="app-view">
-      <router-view style="min-height: 100vh" />
+      <router-view />
     </div>
   </div>
 </template>
@@ -43,11 +43,6 @@ export default {
           id: Math.random(),
           type: "pdf",
           name: "pdf阅读组件"
-        },
-        {
-          id: Math.random(),
-          type: "scrollPdf",
-          name: "scrollPdf阅读组件"
         },
         {
           id: Math.random(),
@@ -140,6 +135,8 @@ export default {
     .navlist {
       margin-top: 50px;
 
+      user-select: none;
+
       font-family: "Noto Serif", "PT Serif", source-han-serif-sc,
         "Source Han Serif SC", "Source Han Serif CN", "Source Han Serif TC",
         "Source Han Serif TW", "Source Han Serif", "Songti SC", SimSon, serif;
@@ -155,12 +152,8 @@ export default {
       .in-app {
         margin: 10px;
         text-align: left;
-        font-weight: 300;
-        letter-spacing: 1px;
 
-        color: #099268;
-        text-decoration: none;
-        cursor: pointer;
+        @include greenTextBtn();
       }
     }
   }
