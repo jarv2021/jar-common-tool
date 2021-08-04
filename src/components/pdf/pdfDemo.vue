@@ -16,12 +16,15 @@
     </div>
 
     <div class="in-content">
-      <template v-if="isScroll">
-        <scrollPdf />
-      </template>
-      <template v-else>
-        <onlinePdf />
-      </template>
+      <!-- <MARKDOM :md="README" /> -->
+      <div class="in-pdf-box">
+        <template v-if="isScroll">
+          <scrollPdf />
+        </template>
+        <template v-else>
+          <onlinePdf />
+        </template>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +32,8 @@
 <script>
 import onlinePdf from "./onlinePdf";
 import scrollPdf from "./scrollPdf";
+
+import README from "./README.md";
 
 export default {
   name: "pdf-container",
@@ -38,6 +43,7 @@ export default {
   },
   data() {
     return {
+      README,
       isScroll: false
     };
   }
@@ -62,9 +68,13 @@ export default {
     }
   }
   .in-content {
-    width: 99%;
-    max-height: 90vh;
-    overflow-y: auto;
+    display: flex;
+
+    .in-pdf-box {
+      width: 99%;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
   }
 }
 </style>

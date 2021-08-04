@@ -1,8 +1,12 @@
 import Vue from "vue";
+import "../styles/markDom.scss";
+
 Vue.component("MARKDOM", {
   name: "markdom",
   render: function(createElement) {
-    return createElement(this.md);
+    return createElement(this.md, {
+      class: "markdom-container"
+    });
   },
   props: {
     md: {

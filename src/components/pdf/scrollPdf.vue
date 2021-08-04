@@ -13,11 +13,7 @@ export default {
   props: {
     pdfUrl: {
       type: [String],
-      default: "./extre/test.pdf"
-    },
-    mode: {
-      type: [String],
-      default: "single"
+      default: "./extre/suffer.pdf"
     }
   },
   data() {
@@ -35,7 +31,6 @@ export default {
     };
   },
   methods: {
-    renderPage() {},
     //创建
     createPdfContainer(id, className) {
       var canvasNew = document.createElement("canvas");
@@ -43,8 +38,7 @@ export default {
       canvasNew.className = className;
       return canvasNew;
     },
-    //渲染pdf
-    //建议给定pdf宽度
+    //渲染pdf  //建议给定pdf宽度
     renderPDF(pdf, i, id) {
       pdf.getPage(i).then(page => {
         var scale = 1.5;
@@ -132,7 +126,6 @@ export default {
       });
     }
   },
-  computed: {},
   created() {
     this.loadPDF(this.pdfUrl);
   }
@@ -141,9 +134,6 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .scroll-pdf-box {
-  // width: 500px;
-  // height: 500px;
-
   display: flex;
   flex-direction: column;
 }

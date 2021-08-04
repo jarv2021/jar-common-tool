@@ -1,0 +1,42 @@
+.markdom-container {
+  pre {
+    display: block;
+    padding: 16px;
+    margin: 0 0 24px;
+    border-left: 8px solid #dddfe4;
+    background: #eef0f4;
+    overflow: auto;
+
+    word-wrap: normal;
+    word-break: normal;
+
+    box-sizing: border-box;
+    padding: 6px;
+  }
+  table {
+    display: block;
+    padding: 16px;
+    margin: 0 0 24px;
+    border-left: 8px solid #dddfe4;
+    background: #eef0f4;
+    overflow: auto;
+
+    word-wrap: normal;
+    word-break: normal;
+
+    box-sizing: border-box;
+    padding: 6px;
+  }
+  h4 {
+    font-weight: 700;
+    font-size: 14px;
+    color: #868e96;
+    margin-right: 4px;
+  }
+  h5 {
+    font-weight: 300;
+    font-size: 14px;
+    color: #868e96;
+    margin-right: 4px;
+  }
+}

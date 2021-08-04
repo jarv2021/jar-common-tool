@@ -3,7 +3,6 @@
     <div class="upload-btn in-btn" @click="uploadImg">upload</div>
     <div class="content-box">
       <div class="article-box">
-        <!-- <README /> -->
         <MARKDOM :md="README" />
       </div>
       <div class="show-box">

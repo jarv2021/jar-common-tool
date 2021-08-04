@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       // vue-cli3版本脚手架对外暴露的静态文件入口是public文件夹(原来是static文件夹)
-      src: "./extre/test.pdf",
+      src: "./extre/suffer.pdf",
       page: 1,
       totalPage: 0,
       progress: 0
@@ -85,6 +85,8 @@ export default {
       .pdf-container {
         width: 100%;
         height: 100%;
+        max-height: 100vh;
+        overflow-y: auto;
       }
     }
   }
@@ -95,9 +97,13 @@ export default {
     .page-box {
       width: 100%;
       height: 100%;
+      max-height: 100vh;
+      overflow-y: auto;
+
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .in-page {
         flex: 1;
 
@@ -106,7 +112,7 @@ export default {
         align-items: center;
 
         width: 100%;
-        min-height: 30px;
+        max-height: 30px;
 
         cursor: pointer;
 

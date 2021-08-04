@@ -47,6 +47,7 @@ export default {
   }
   .clear-btn {
     @include utilBtn();
+    @include primaryBtn();
 
     width: 100px;
     margin-top: 30px;
