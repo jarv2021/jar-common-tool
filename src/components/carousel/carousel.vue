@@ -114,8 +114,9 @@ export default {
       }
     },
     numClick(item) {
+      if (this.currentSwiperItem.originIndex === item.originIndex) return;
+      
       if (this.timer) clearTimeout(this.timer);
-
       this.clearDisplay();
 
       item.className = "display-item";
