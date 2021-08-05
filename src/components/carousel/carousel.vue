@@ -9,7 +9,11 @@
             :style="handleStyle(swiperItem)"
             :class="swiperItem.className"
           >
-            <img :src="swiperItem.picture" class="in-img" />
+            <img
+              :src="swiperItem.picture"
+              class="in-img"
+              @click="imgClick(swiperItem)"
+            />
           </div>
         </template>
 
@@ -103,6 +107,11 @@ export default {
       return item.className === "display-item"
         ? "in-num-line-active"
         : "in-num-line";
+    },
+    imgClick(item) {
+      if (item.className !== "display-item") {
+        this.nextClick();
+      }
     },
     numClick(item) {
       if (this.timer) clearTimeout(this.timer);
