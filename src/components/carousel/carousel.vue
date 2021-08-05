@@ -107,6 +107,8 @@ export default {
     numClick(item) {
       if (this.timer) clearTimeout(this.timer);
 
+      this.clearDisplay();
+
       item.className = "display-item";
       this.currentSwiperItem = item;
 
@@ -127,9 +129,9 @@ export default {
 
       nextTaget.className = "carousel-item";
 
-      this.$forceUpdate();
-
       this.loop();
+
+      this.$forceUpdate();
     },
     nextClick() {
       let target = this.copySwiperList.find(
@@ -139,6 +141,23 @@ export default {
         target = this.copySwiperList[0];
       }
       this.numClick(target);
+    },
+    // 清除进度条
+    clearDisplay() {
+      let currentProgressArr = document.querySelectorAll(".in-progress");
+      if (currentProgressArr.length > 0) {
+        for (let itemObj of currentProgressArr) {
+          itemObj.classList.remove("display-item");
+          itemObj.classList.remove("in-progress");
+        }
+      }
+
+      this.copySwiperList = this.copySwiperList.map(item => {
+        if (item.className === "display-item") {
+          item.className = "hidden-item";
+        }
+        return item;
+      });
     }
   }
 };
