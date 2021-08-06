@@ -6,7 +6,7 @@
           class="info-logo"
           :src="logo"
           alt="一个可以fork的工具库"
-          @click="router.push('/')"
+          @click="logoClick"
         />
         <div class="site-name">Components</div>
         <div class="site-description">一个可以fork的工具库</div>
@@ -36,6 +36,11 @@ export default {
       list: [
         {
           id: Math.random(),
+          type: "index",
+          name: "首页"
+        },
+        {
+          id: Math.random(),
           type: "carousel",
           name: "简易轮播"
         },
@@ -54,17 +59,19 @@ export default {
           type: "uploadAvatar",
           name: "头像上传"
         }
-        // {
-        //   id: Math.random(),
-        //   type: "markdom",
-        //   name: "查询资料"
-        // }
       ]
     };
   },
   methods: {
     appClick(item) {
       this.$router.push(item.type);
+    },
+    logoClick() {
+      this.appClick({
+        id: Math.random(),
+        type: "index",
+        name: "首页"
+      });
     }
   }
 };
@@ -97,6 +104,8 @@ export default {
 
         display: block;
         margin: 0 auto;
+
+        cursor: pointer;
       }
       .site-name {
         color: #343a40;

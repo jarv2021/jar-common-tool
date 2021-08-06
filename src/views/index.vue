@@ -29,6 +29,13 @@ export default {
           cover: "https://lokmont-jekyll.netlify.app/images/pages/3.jpg",
           desc:
             "Literally lomo blue bottle pabst retro snackwave brooklyn taiyaki bitters. Stumptown tilde bespoke dreamcatcher enamel pin, pok pok blog drinking..."
+        },
+        {
+          id: Math.random(100),
+          title: "That I take with me on tour",
+          cover: "https://lokmont-jekyll.netlify.app/images/pages/3.jpg",
+          desc:
+            "Literally lomo blue bottle pabst retro snackwave brooklyn taiyaki bitters. Stumptown tilde bespoke dreamcatcher enamel pin, pok pok blog drinking..."
         }
       ]
     };

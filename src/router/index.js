@@ -10,6 +10,11 @@ const constantRoter = [
     name: "index"
   },
   {
+    path: "/index",
+    component: () => import("@/views/index"),
+    name: "index"
+  },
+  {
     path: "/car",
     component: () => import("@/components/car/carDemo"),
     name: "car"
