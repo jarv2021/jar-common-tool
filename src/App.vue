@@ -2,7 +2,12 @@
   <div id="app">
     <div class="app-boxs">
       <div class="info-box">
-        <img class="info-logo" :src="logo" alt="" />
+        <img
+          class="info-logo"
+          :src="logo"
+          alt="一个可以fork的工具库"
+          @click="router.push('/')"
+        />
         <div class="site-name">Components</div>
         <div class="site-description">一个可以fork的工具库</div>
       </div>
@@ -31,6 +36,11 @@ export default {
       list: [
         {
           id: Math.random(),
+          type: "carousel",
+          name: "简易轮播"
+        },
+        {
+          id: Math.random(),
           type: "car",
           name: "车牌号选择器"
         },
@@ -43,12 +53,7 @@ export default {
           id: Math.random(),
           type: "uploadAvatar",
           name: "头像上传"
-        },
-        {
-          id: Math.random(),
-          type: "carousel",
-          name: "简易轮播"
-        },
+        }
         // {
         //   id: Math.random(),
         //   type: "markdom",
@@ -147,13 +152,15 @@ export default {
   }
 
   .app-view {
-    margin-left: 15px;
+    padding-left: 15px;
     flex: 1;
-    height: 100%;
-    max-height: 100vh;
+
+    height: 100vh;
 
     overflow-x: hidden;
     overflow-y: auto;
+
+    background: #f5fafc;
   }
 }
 </style>
