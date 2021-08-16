@@ -1,8 +1,5 @@
 <template>
   <div class="container">
-    <!-- <div class="in-mask"
-         @touchstart="clickMask"></div> -->
-
     <div @click.stop="showWrap" @tap="showWrap">
       <slot></slot>
     </div>
