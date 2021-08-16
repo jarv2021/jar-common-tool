@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div @click.stop="showWrap" @tap="showWrap">
+    <div @click.stop="showWrap" @tap.stop="showWrap">
       <slot></slot>
     </div>
 
@@ -151,7 +151,6 @@ export default {
   },
   methods: {
     showWrap() {
-      console.info("showWrap");
       if (this.show === false) {
         this.show = true;
         this.showFirst = !(this.selectArr.length > 0);

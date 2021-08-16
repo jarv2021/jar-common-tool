@@ -1,28 +1,47 @@
 <template>
-  <div class="pdf-container">
+  <div class="pdf-demo">
     <div class="in-nav">
       <div
-        :class="isScroll ? 'in-item' : 'in-item-active'"
-        @click="isScroll = false"
+        :class="pdfConfig.pageScroll ? 'in-item' : 'in-item-active'"
+        @click="navClick"
       >
         翻页阅读
       </div>
       <div
-        :class="isScroll ? 'in-item-active' : 'in-item'"
-        @click="isScroll = true"
+        :class="pdfConfig.pageScroll ? 'in-item-active' : 'in-item'"
+        @click="navClick"
       >
         滚动阅读
       </div>
     </div>
 
     <div class="in-content">
-      <!-- <MARKDOM :md="README" /> -->
       <div class="in-pdf-box">
-        <template v-if="isScroll">
-          <scrollPdf />
+        <template v-if="pdfConfig.pageTurn">
+          <div class="in-page-turn">
+            <pdfComponent
+              class="in-pdf"
+              :pdfConfig="pdfConfig"
+              @totalPage="getTotalPage"
+            />
+
+            <div class="page-num-box">
+              <template v-for="item of totalPage">
+                <div class="in-btn" :key="item" @click="pageClick(item)">
+                  {{ item }}
+                </div>
+              </template>
+            </div>
+          </div>
         </template>
-        <template v-else>
-          <onlinePdf />
+        <template v-if="pdfConfig.pageScroll">
+          <div class="in-page-scroll">
+            <pdfComponent
+              class="in-pdf"
+              :pdfConfig="pdfConfig"
+              @totalPage="getTotalPage"
+            />
+          </div>
         </template>
       </div>
     </div>
@@ -30,28 +49,44 @@
 </template>
 
 <script>
-import onlinePdf from "./onlinePdf";
-import scrollPdf from "./scrollPdf";
-
 import README from "./README.md";
 
+import pdfComponent from "./pdfComponent";
+
 export default {
-  name: "pdf-container",
+  name: "pdf-demo",
   components: {
-    scrollPdf,
-    onlinePdf
+    pdfComponent
   },
   data() {
     return {
       README,
-      isScroll: false
+      pdfConfig: {
+        src: "./extre/suffer.pdf",
+        currnetPage: 1,
+        pageTurn: true,
+        pageScroll: false
+      },
+      totalPage: 0
     };
+  },
+  methods: {
+    navClick() {
+      this.pdfConfig.pageTurn = !this.pdfConfig.pageTurn;
+      this.pdfConfig.pageScroll = !this.pdfConfig.pageTurn;
+    },
+    getTotalPage(data) {
+      this.totalPage = data;
+    },
+    pageClick(item) {
+      this.pdfConfig.currnetPage = item;
+    }
   }
 };
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-.pdf-container {
+.pdf-demo {
   .in-nav {
     display: flex;
     align-items: center;
@@ -72,8 +107,42 @@ export default {
 
     .in-pdf-box {
       width: 99%;
-      max-height: 90vh;
-      overflow-y: auto;
+      .in-page-scroll {
+        max-height: 90vh;
+        overflow-y: auto;
+        .in-pdf {
+          max-width: 1000px;
+
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+      }
+
+      .in-page-turn {
+        display: flex;
+
+        .in-pdf {
+          max-width: 1000px;
+
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        .page-num-box {
+          display: flex;
+          flex-direction: column;
+
+          margin-left: 15px;
+
+          .in-btn {
+            width: 150px;
+            @include utilBtn();
+            @include primaryBtn();
+
+            margin: 10px 0;
+          }
+        }
+      }
     }
   }
 }
