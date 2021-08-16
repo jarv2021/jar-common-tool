@@ -16,7 +16,8 @@
 ### 项目运行
 
 ```
-npm i
+npm i 或 yarn （推荐）
+
 npm run serve
 ```
 
