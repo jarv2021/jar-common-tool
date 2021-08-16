@@ -11,7 +11,7 @@
           >
             <img
               :src="swiperItem.picture"
-              class="in-img"
+              class="in-img util-img-load"
               @click="imgClick(swiperItem)"
             />
           </div>
