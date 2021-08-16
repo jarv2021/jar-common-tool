@@ -11,6 +11,7 @@ npm run serve
 
 ### 项目目录
 
+```
 ├─.gitignore
 ├─Ant Design.md
 ├─babel.config.js
@@ -73,3 +74,4 @@ npm run serve
 | ├─NEW.md
 | ├─UML.md
 | └VUE.md
+```
