@@ -8,6 +8,7 @@ import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 export default {
+  name: "pdf-container",
   props: {
     pdfConfig: {
       type: Object,
@@ -41,6 +42,7 @@ export default {
     this.init();
   },
   methods: {
+    // 初始化
     init() {
       this.deleteCanvas();
       this.loadPDF(this.pdfConfig.src);
@@ -75,8 +77,13 @@ export default {
     },
     // 删除canvas
     deleteCanvas() {
-      let box = document.querySelector("canvas");
-      box && box.remove();
+      let container = document.querySelector(".pdf-container");
+      if (container) {
+        let boxs = container.querySelectorAll("canvas");
+        for (let box of boxs) {
+          box && box.remove();
+        }
+      }
     },
     // 渲染pdf  //建议给定pdf宽度
     renderPDF(pdf, i, container) {
