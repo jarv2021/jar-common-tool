@@ -43,9 +43,9 @@ export default {
         },
         {
           id: Math.random(100),
-          title: "Twittetr头像上传组件",
+          title: "twittetr头像上传组件",
           cover: uploadAvatar,
-          desc: "仿Twittetr头像上传组件",
+          desc: "仿twittetr头像上传组件",
           path: "/uploadAvatar"
         },
         {
