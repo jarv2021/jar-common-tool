@@ -34,56 +34,62 @@ npm run serve
 ├─vue.config.js
 ├─yarn.lock
 ├─src
-| ├─App.vue
-| ├─main.js
-| ├─styles
-| | ├─markDom.scss
-| | ├─mixin.scss
-| | └reset.scss
-| ├─router
-| | └index.js
-| ├─components
-| | ├─upload-avatar
-| | | ├─avatar_pop_enlarge.png
-| | | ├─avatar_pop_enless.png
-| | | ├─demo.vue
-| | | ├─progress-bar.vue
-| | | ├─README.md
-| | | ├─return-arrow.png
-| | | ├─top-box.vue
-| | | └upload-avatar.vue
-| | ├─pdf
-| | | ├─onlinePdf.vue
-| | | ├─pdfDemo.vue
-| | | ├─README.md
-| | | └scrollPdf.vue
-| | ├─material
-| | ├─carousel
-| | | ├─carousel.vue
-| | | └carouselDemo.vue
-| | ├─car
-| | | ├─carDemo.vue
-| | | ├─carInput.vue
-| | | └README.md
-| ├─common
-| | ├─markdom.js
-| | └utils.js
-| ├─assets
-| | └logo.png
+|  ├─App.vue
+|  ├─main.js
+|  ├─views
+|  |   └index.vue
+|  ├─styles
+|  |   ├─markDom.scss
+|  |   ├─mixin.scss
+|  |   └reset.scss
+|  ├─router
+|  |   └index.js
+|  ├─components
+|  |     ├─upload-avatar
+|  |     |       ├─avatar_pop_enlarge.png
+|  |     |       ├─avatar_pop_enless.png
+|  |     |       ├─demo.vue
+|  |     |       ├─progress-bar.vue
+|  |     |       ├─README.md
+|  |     |       ├─return-arrow.png
+|  |     |       ├─top-box.vue
+|  |     |       └upload-avatar.vue
+|  |     ├─pdf
+|  |     |  ├─pdfComponent.vue
+|  |     |  ├─pdfDemo.vue
+|  |     |  └README.md
+|  |     ├─material
+|  |     ├─carousel
+|  |     |    ├─carousel.vue
+|  |     |    └carouselDemo.vue
+|  |     ├─car
+|  |     |  ├─carDemo.vue
+|  |     |  ├─carInput.vue
+|  |     |  └README.md
+|  ├─common
+|  |   ├─markdom.js
+|  |   └utils.js
+|  ├─assets
+|  |   ├─card_num_select.png
+|  |   ├─carousel.jpg
+|  |   ├─logo.png
+|  |   ├─pdf_read.jpg
+|  |   └upload_avatar.jpg
 ├─public
-| ├─favicon.ico
-| ├─index.html
-| ├─extre
-| | └suffer.pdf
+|   ├─favicon.ico
+|   ├─index.html
+|   ├─extre
+|   |   └suffer.pdf
 ├─markdom
-| ├─APP.md
-| ├─BROWER.md
-| ├─CSS.md
-| ├─DEBUGGER.md
-| ├─ERROR.md
-| ├─GIT.md
-| ├─JS.md
-| ├─NEW.md
-| ├─UML.md
-| └VUE.md
+|    ├─APP.md
+|    ├─BROWER.md
+|    ├─CSS.md
+|    ├─DEBUGGER.md
+|    ├─ERROR.md
+|    ├─GIT.md
+|    ├─JS.md
+|    ├─NEW.md
+|    ├─UML.md
+|    └VUE.md
+
 ```
