@@ -42,12 +42,12 @@ export default {
         {
           id: Math.random(),
           type: "carousel",
-          name: "简易轮播"
+          name: "双项轮播"
         },
         {
           id: Math.random(),
           type: "car",
-          name: "车牌号选择器"
+          name: "vue车牌号选择器"
         },
         {
           id: Math.random(),

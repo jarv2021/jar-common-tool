@@ -1,6 +1,11 @@
 <template>
   <div class="index-container">
-    <article class="in-item" v-for="item of list" :key="item.id">
+    <article
+      class="in-item"
+      v-for="item of list"
+      :key="item.id"
+      @click="itemClick(item)"
+    >
       <div class="item-cover" :style="handleCover(item)"></div>
       <div class="item-post">
         <div class="post-title">{{ item.title }}</div>
@@ -11,6 +16,11 @@
 </template>
 
 <script>
+import cardImg from "./../assets/card_num_select.png";
+import carousel from "./../assets/carousel.jpg";
+import pdfRead from "./../assets/pdf_read.jpg";
+import uploadAvatar from "./../assets/upload_avatar.jpg";
+
 export default {
   name: "index-container",
   data() {
@@ -18,24 +28,33 @@ export default {
       list: [
         {
           id: Math.random(100),
-          title: "10 Best books of all time",
-          cover: "https://lokmont-jekyll.netlify.app/images/pages/17.jpg",
+          title: "双项轮播组件",
+          cover: carousel,
           desc:
-            "Neutra cornhole fanny pack brooklyn dreamcatcher hashtag bitters pickled YOLO photo booth deep v single-origin coffee portland cloud bread. Next..."
+            "一般轮播都是左中右结构的，这个组件的轮播是左右结构的，目前尚未被超越，哈哈哈",
+          path: "/carousel"
         },
         {
           id: Math.random(100),
-          title: "That I take with me on tour",
-          cover: "https://lokmont-jekyll.netlify.app/images/pages/3.jpg",
-          desc:
-            "Literally lomo blue bottle pabst retro snackwave brooklyn taiyaki bitters. Stumptown tilde bespoke dreamcatcher enamel pin, pok pok blog drinking..."
+          title: "pdf阅读组件",
+          cover: pdfRead,
+          desc: "该组件支持滚动翻页和点击翻页功能",
+          path: "/pdf"
         },
         {
           id: Math.random(100),
-          title: "That I take with me on tour",
-          cover: "https://lokmont-jekyll.netlify.app/images/pages/3.jpg",
+          title: "Twittetr头像上传组件",
+          cover: uploadAvatar,
+          desc: "仿Twittetr头像上传组件",
+          path: "/uploadAvatar"
+        },
+        {
+          id: Math.random(100),
+          title: "vue车牌号选择器组件",
+          cover: cardImg,
           desc:
-            "Literally lomo blue bottle pabst retro snackwave brooklyn taiyaki bitters. Stumptown tilde bespoke dreamcatcher enamel pin, pok pok blog drinking..."
+            "这个组件是完全原生的，目前支持非绿车牌，如有需更多支持，敬请github留言",
+          path: "/car"
         }
       ]
     };
@@ -46,6 +65,9 @@ export default {
          background-image:url(${item.cover});
          background-size:cover;
         `;
+    },
+    itemClick(item) {
+      this.$router.push(item.path);
     }
   }
 };

@@ -3,7 +3,7 @@
     <!-- <div class="in-mask"
          @touchstart="clickMask"></div> -->
 
-    <div @click="showWrap" @touchstart="showWrap">
+    <div @click.stop="showWrap" @tap="showWrap">
       <slot></slot>
     </div>
 
@@ -154,6 +154,7 @@ export default {
   },
   methods: {
     showWrap() {
+      console.info("showWrap");
       if (this.show === false) {
         this.show = true;
         this.showFirst = !(this.selectArr.length > 0);

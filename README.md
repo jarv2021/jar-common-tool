@@ -2,6 +2,13 @@
 
 ### 地址：https://github.com/JACK-Liang-2020/jar-common-tool
 
+### 项目介绍 ：
+
+```
+特殊vue组件工具库，基于vue2.0
+
+```
+
 ### 项目运行
 
 ```
