@@ -89,6 +89,7 @@ export default {
 
   .app-boxs {
     width: 20%;
+    min-width: 200px;
 
     background-size: cover;
     background-color: #f8f9fa;
@@ -163,6 +164,7 @@ export default {
   .app-view {
     padding-left: 15px;
     flex: 1;
+    min-width: 1484px;
 
     height: 100vh;
 

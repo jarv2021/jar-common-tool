@@ -82,7 +82,7 @@ export default {
   grid-row-gap: 30px;
   grid-column-gap: 30px;
 
-  margin: 30px 15px 0 15px;
+  margin: 30px 15px 30px 15px;
 
   .in-item {
     width: 100%;
