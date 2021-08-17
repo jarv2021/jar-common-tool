@@ -1,23 +1,26 @@
 {
   "name": "jar-common-tool",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
+    "lint": "vue-cli-service lint",
     "d": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "publish": "node git-commit.js",
+    "build::p": "npm run bulid && npm run publish",
+    "report": "npm run build -- --report"
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "compression-webpack-plugin": "5.0.1",
     "core-js": "^3.11.0",
     "cropperjs": "^1.5.12",
     "node-sass": "^5.0.0",
     "pdfjs-dist": "^2.8.335",
     "sass-loader": "^10.1.1",
-    "simple-git": "^2.44.0",
+    "shelljs": "^0.8.4",
     "vue": "^2.6.11",
-    "vue-pdf": "^4.3.0",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {

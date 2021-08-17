@@ -1,15 +1,24 @@
-const git = require("simple-git");
-const path = "./dist";
-const commitMessage = "updete index";
-const repo = "https://github.com/jarv2021/jarv2021.github.io.git";
+var name = process.argv[2] || "Auto-commit";
+var shell = require("shelljs");
+var exec = shell.exec;
 
-console.info('git-commit')
+shell.cp("-R", "./dist/*", "../jtool.github.io");
 
-git(path)
-  .init()
-  .add("./*")
-  .commit(commitMessage)
-  .addRemote("origin", repo)
-  .push(["-f", "origin", "master"], () => {
-    console.log("Push to master success");
-  });
+let commitMsg = `update ${+new Date()}`;
+
+shell.cd("../jtool.github.io");
+
+if (exec("git add .").code !== 0) {
+  console.info("Error: Git add failed");
+  shell.exit(1);
+}
+if (exec(`git commit -am "${commitMsg}"`).code !== 0) {
+  console.info("Error: Git commit failed");
+  shell.exit(1);
+}
+if (exec("git push").code !== 0) {
+  console.info("Error: Git commit failed");
+  shell.exit(1);
+}
+
+exec(`echo git success ${name}`);
