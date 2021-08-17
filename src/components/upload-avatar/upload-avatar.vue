@@ -39,14 +39,17 @@ import topBox from "./top-box";
 
 export default {
   props: {
+    // 显示缩放百分比
     showProgressBar: {
       type: Boolean,
       default: false
     },
+    // 显示头部按钮
     showTopBox: {
       type: Boolean,
       default: false
     },
+    // 输出裁剪图片的质量设置
     resultQuality: {
       type: [Object],
       default: () => {
@@ -63,6 +66,7 @@ export default {
         };
       }
     },
+    // 上传图片配置
     uploadConfig: {
       type: [Object],
       default: () => {
@@ -74,6 +78,7 @@ export default {
         };
       }
     },
+    // cropperjs的配置
     cropperConfig: {
       type: [Object],
       default: () => {
@@ -103,6 +108,7 @@ export default {
         };
       }
     },
+    // 滚轮缩放的配置
     wheelConfig: {
       type: [Object],
       default: () => {
@@ -114,6 +120,7 @@ export default {
         };
       }
     },
+    // 截图容器大小的配置
     containerConfig: {
       type: [Object],
       default: () => {
@@ -155,6 +162,7 @@ export default {
     this.copyWheelConfig = JSON.parse(JSON.stringify(this.wheelConfig));
   },
   methods: {
+    // 截图组件初始化
     cropingStart(el) {
       let that = this;
       let target = document.querySelector(el);
@@ -208,18 +216,14 @@ export default {
     handleMove() {
       // console.info("handleMove", data);
     },
+    // 设置缩放比率
     handleZoom(data) {
       let ratio = data.detail.ratio;
       this.ratio = ratio;
       this.setProgressNum();
       this.$emit("zoomRatio", ratio);
     },
-    chooseFile() {
-      const active = document.getElementById("uploadsId");
-      const mouseEvent = document.createEvent("MouseEvents"); // FF的处理
-      mouseEvent.initEvent("click", true, true);
-      active.dispatchEvent(mouseEvent);
-    },
+    // 触发上传
     uploadImg(e) {
       const file = e.target.files[0];
       if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
@@ -252,6 +256,7 @@ export default {
       // 转化为blob
       reader.readAsArrayBuffer(file);
     },
+    // 关闭上传弹窗
     closeDialog() {
       // console.info("closeDialog");
       this.imgUrl = null;
@@ -262,9 +267,11 @@ export default {
       this.myCropper && this.myCropper.destroy();
       this.myCropper = null;
     },
+    // 截图组件重置
     reset() {
       this.myCropper.reset();
     },
+    // 设置鼠标滚轮事件监听
     setWheel(el, method) {
       let target = document.querySelector(el);
       if (!target) return;
@@ -282,6 +289,7 @@ export default {
         target.onmousewheel = target.onmousewheel = null; //W3C
       }
     },
+    // 处理滚轮事件，处理数据
     handleWheel(event) {
       // 防止滚动穿透
       event.preventDefault();
@@ -297,6 +305,7 @@ export default {
         this.setZoom(result);
       }
     },
+    // 生成截图
     getCropResult() {
       let that = this;
       var promise = new Promise((resolve, reject) => {
@@ -344,15 +353,19 @@ export default {
       });
       return promise;
     },
+    // 设置截图组件的缩放
     setZoom(val) {
       this.myCropper.zoomTo(val, [0, 0]);
     },
+    // 处理百分比组件的拖动
     progressResultFun(data) {
       this.setZoom(this.getRate(data));
     },
+    // 生成截图
     saveFun() {
       this.getCropResult();
     },
+    // 关闭弹窗
     closeFun() {
       this.closeDialog();
     },
@@ -364,6 +377,7 @@ export default {
       });
       return instance;
     },
+    // 设置缩放百分比
     setProgressNum() {
       let wheelConfig = this.copyWheelConfig;
       let denominator =
@@ -371,6 +385,7 @@ export default {
       let rate = Math.abs(this.ratio - wheelConfig.minZoom) / denominator;
       this.progressNum = rate;
     },
+    // 获取根据百分比组件传递值，换算的比率
     getRate(data) {
       let rate = 0;
       let wheelConfig = this.copyWheelConfig;

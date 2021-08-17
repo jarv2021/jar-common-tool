@@ -1,7 +1,29 @@
 ## 头像上传组件
 
+## 组件需求和思路分析
+
 ```
-   ！前提模块安装： Cropper，axios
+需求：
+1.需允许上传 gif|jpg|jpeg|png|bmp|GIF|JPG|PNG 等比较通用的图片格式
+2.鼠标滚轮可以缩放，并且获取缩放的百分比
+3.截图框不能拖动，上传的图片可以拖动，但是图片的拖动不能离开截图框
+
+扩展：
+1.是否做上传图片大小限制
+2.是否截图框和上传图片都能拖动
+3.上传图片是否按比例变大或缩小，填满截图框
+
+思路：
+1.参考vue-Cropper，使用了cropperjs，并且裁剪了许多功能，使功能集中于缩放和裁剪两项
+2.cropperjs 并没有提供方法返回缩放的精确数值，所以组件改用了 监听 DOMMouseScroll 事件，根据一定的比率换算，设置缩放大小
+3.细化截图的结果输出，分别返回 cropSuccess， cropFail， cropUploadSuccess ，cropUploadFail事件
+
+```
+
+## 使用
+
+```
+   ！前提模块安装： cropperjs，axios
    cropperjs 文档：https://github.com/fengyuanchen/cropperjs
    axios 文档：http://www.axios-js.com/
 
@@ -11,8 +33,6 @@
    触发上传文件：
    this.$refs.uploadAvatar.chooseFile();
 ```
-
-## 使用
 
 #### Props
 
