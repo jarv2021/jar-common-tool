@@ -8,7 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "publish": "node git-commit.js",
-    "build::p": "npm run bulid && npm run publish",
+    "build::p": "npm run build && npm run publish",
     "report": "npm run build -- --report"
   },
   "dependencies": {
