@@ -21,6 +21,7 @@
           <div class="in-page-turn">
             <pdfComponent
               class="in-pdf"
+              ref="pdfComponent"
               :pdfConfig="pdfConfig"
               @totalPage="getTotalPage"
             />
@@ -38,8 +39,10 @@
           <div class="in-page-scroll">
             <pdfComponent
               class="in-pdf"
+              ref="pdfComponent"
               :pdfConfig="pdfConfig"
               @totalPage="getTotalPage"
+              @scroll="scrollFun"
             />
           </div>
         </template>
@@ -72,14 +75,23 @@ export default {
   },
   methods: {
     navClick() {
-      this.pdfConfig.pageTurn = !this.pdfConfig.pageTurn;
-      this.pdfConfig.pageScroll = !this.pdfConfig.pageTurn;
+      // this.pdfConfig.pageTurn = !this.pdfConfig.pageTurn;
+      // this.pdfConfig.pageScroll = !this.pdfConfig.pageTurn;
+
+      this.pdfConfig = {
+        ...this.pdfConfig,
+        pageTurn: !this.pdfConfig.pageTurn,
+        pageScroll: !!this.pdfConfig.pageTurn
+      };
     },
     getTotalPage(data) {
       this.totalPage = data;
     },
     pageClick(item) {
       this.pdfConfig.currnetPage = item;
+    },
+    scrollFun(page) {
+      // console.info(page);
     }
   }
 };
