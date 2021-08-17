@@ -20,23 +20,22 @@ export default {
     this.swiperList = [
       {
         picture:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F210%2F360%2F468%2F12c6835f2b124851b7e18c7dc6fdc281.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630662527&t=df9cdb9a8660a0f5bddb0490b498a742"
+          "https://lh3.googleusercontent.com/proxy/t8Een_mp4aYuKd2zEp-lOcdnbmJ5McqSrw_BxM61wHAN2DUzIJxy4i1hFXB8dlLD9wHjkAONmPIAbJ2PLKprUBaRb2ehhq0EXF7Q3Iia-BA"
       },
       {
         picture:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage.wangchao.net.cn%2Ffengjing%2F1324806063809.jpg&refer=http%3A%2F%2Fimage.wangchao.net.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630662527&t=6f00272bebb9423028cde39c1d75dd4f"
+          "https://lh3.googleusercontent.com/proxy/riT9d0kmXKv9fu7hdUlNuDNP4bn8XVTej0SjxQCi9uJ72LqFAyFWOA47oHj04lGq3Mw_XjiiILR_Lf0PjhcmQx8TPT0yYI6zoarsADmbx57AzVAdc0Lwpn5JWyojEOht"
       },
       {
         picture:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F623%2F064%2F163%2Fce3f1a0a55164e0a8957acde6683aef2.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630662527&t=7ef1ea112ec1ca021810cb336958395d"
+          "https://lh3.googleusercontent.com/proxy/kagFZuxLj5NKOC2kWnJxa2KPSmSNFOhEyk-jIX4QCwTGCnaXTybjxNS-Ldwi0rvtaZNhVkno7xRlOvYYJCOS2_0gJlHiGdq7M1PTaAIEntTq48LvkIJwMgPdWfWu7DFZhPY"
+      },
+      {
+        picture: "https://c.53326.com/d/file/20180628/3wh2h2p0kvu.jpg"
       },
       {
         picture:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fyouimg1.c-ctrip.com%2Ftarget%2Ftg%2F106%2F069%2F371%2F3f53bff8412e46deb6e59af671bb1529.jpg&refer=http%3A%2F%2Fyouimg1.c-ctrip.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630662527&t=b6c6149456d6eb5ed061868a99f06922"
-      },
-      {
-        picture:
-          "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com%2Fforum%2F201504%2F02%2F153728xb7jhx43434y7334.png&refer=http%3A%2F%2Fattach.bbs.miui.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1630662527&t=2f2033098050377cc28f6b8f0ef23596"
+          "https://lh3.googleusercontent.com/proxy/2FfAQU7_7REuBuHlTgXnMfyf4W9YT_HCpd44FY-qfEldd7iZdA-eC8j9us5VIeJW709rS7gryVUDEVWf4AmfuzThcBn7ejGrY0ig4MBz7pu3qx1kupBBwOmabNEKbw"
       }
     ];
   }
