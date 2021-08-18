@@ -12,7 +12,6 @@
 
     <uploadAvatar
       ref="uploadAvatar"
-      :resultToBlob="true"
       :showProgressBar="true"
       :showTopBox="true"
       :uploadConfig="uploadConfig"

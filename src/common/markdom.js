@@ -1,5 +1,5 @@
 import Vue from "vue";
-import "../styles/markDom.scss";
+import "../styles/MARKDOM.scss";
 
 Vue.component("MARKDOM", {
   name: "markdom",
