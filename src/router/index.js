@@ -6,8 +6,7 @@ Vue.use(Router);
 const constantRoter = [
   {
     path: "/",
-    component: () => import("@/views/index"),
-    name: "index"
+    redirect: "/index"
   },
   {
     path: "/index",

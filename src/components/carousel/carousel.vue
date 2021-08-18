@@ -33,11 +33,7 @@
           </template>
         </div>
 
-        <div
-          v-if="copySwiperList.length > 1"
-          class="next-box"
-          @click="nextClick"
-        >
+        <div v-if="showNextBox" class="next-box" @click="nextClick">
           NEXT
           <div class="right-arrow" style="margin-left:10px;" />
         </div>
@@ -50,7 +46,28 @@
 export default {
   name: "carousel",
   props: {
-    swiperList: [Array]
+    swiperConfig: {
+      type: [Object],
+      default: () => {
+        return {
+          showNext: true,
+          swiperList: []
+        };
+      }
+    },
+    displayConfig: {
+      type: [Object],
+      default: () => {
+        return {
+          width: 615,
+          height: 345,
+          // 待展示项的左偏移量
+          subOffsetLeft: 115,
+          // 待展示项的顶部偏移量
+          subOffsetTop: 0
+        };
+      }
+    }
   },
   data() {
     return {
@@ -59,9 +76,19 @@ export default {
       copySwiperList: []
     };
   },
+  computed: {
+    showNextBox() {
+      return (
+        this.copySwiperList.length > 1 && this.swiperConfig.showNext === true
+      );
+    }
+  },
   watch: {
-    swiperList(val) {
-      this.init();
+    swiperConfig: {
+      handler() {
+        this.init();
+      },
+      deep: true
     }
   },
   destroyed() {
@@ -69,7 +96,9 @@ export default {
   },
   methods: {
     init() {
-      this.copySwiperList = JSON.parse(JSON.stringify(this.swiperList));
+      this.copySwiperList = JSON.parse(
+        JSON.stringify(this.swiperConfig.swiperList)
+      );
 
       this.copySwiperList = this.copySwiperList.map((item, index) => {
         if (index === 0) {
@@ -84,6 +113,10 @@ export default {
       });
       this.currentSwiperItem = this.copySwiperList[0];
 
+      this.$nextTick(() => {
+        this.setImgLimits();
+      });
+
       this.loop();
     },
     loop() {
@@ -96,11 +129,31 @@ export default {
       }, this.loopTime * 1000);
     },
     handleStyle(item) {
-      let result = `z-index:${100 - item.originIndex};opacity:${0.3 -
-        item.originIndex / 30}`;
+      let displayConfig = this.displayConfig;
+      let result = `
+      z-index:${100 - item.originIndex};
+      opacity:${0.3 - item.originIndex / 30};`;
+
       if (item.originIndex === this.currentSwiperItem.originIndex) {
-        result = `z-index:${200};opacity:1;`;
+        result += `z-index:${200};opacity:1;`;
       }
+
+      // if (item.className === "display-item") {
+      //   result += `
+      //    width:${displayConfig.width}px;
+      //    height:${displayConfig.height}px;
+      //   `;
+      // }
+
+      if (item.className === "carousel-item") {
+        result += `
+         left:${displayConfig.subOffsetLeft}px;
+         top:${displayConfig.subOffsetTop}px;
+        `;
+      }
+
+      // console.info("item", item);
+      // console.info("result", result);
       return result;
     },
     handlerNumClass(item) {
@@ -115,7 +168,7 @@ export default {
     },
     numClick(item) {
       if (this.currentSwiperItem.originIndex === item.originIndex) return;
-      
+
       if (this.timer) clearTimeout(this.timer);
       this.clearDisplay();
 
@@ -168,14 +221,29 @@ export default {
         }
         return item;
       });
+    },
+    setImgLimits() {
+      let displayConfig = this.displayConfig;
+      let imgArr = document.querySelectorAll(".in-img");
+      // console.info("imgArr", imgArr);
+      let styleStr = `
+           width:${displayConfig.width}px;
+           height:${displayConfig.height}px;
+           max-width: ${displayConfig.width}px;
+           min-width: ${displayConfig.width}px;
+           max-height:${displayConfig.height}px;
+           min-height:${displayConfig.height}px;
+           object-fit: cover;
+      `;
+      for (let img of imgArr) {
+        img.setAttribute("style", styleStr);
+      }
     }
   }
 };
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-$heightSize: 490px;
-
 @mixin utilTransition {
   $transitionTime: 1s;
   transition-property: "scale";
@@ -197,20 +265,17 @@ $heightSize: 490px;
 }
 
 .banner-swiper-box {
-  height: $heightSize;
-  max-height: $heightSize;
-
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
   background: #ffffff;
 
-  overflow: hidden;
+  box-sizing: border-box;
+  padding: 30px;
 
-  margin: 60px auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   .swiper-container {
-    max-width: 1200px;
+    min-width: 1200px;
     margin: 0 auto;
 
     display: flex;
@@ -254,8 +319,6 @@ $heightSize: 490px;
       }
 
       .info-view {
-        // margin-top: 54px;
-
         position: absolute;
         bottom: 43px;
 
@@ -313,25 +376,19 @@ $heightSize: 490px;
     .carousel-box {
       min-width: 747px;
       min-height: 384px;
-      // background: steelblue;
-      overflow: hidden;
+
+      // overflow: hidden;
 
       display: flex;
 
       margin-top: 67px;
       margin-left: 38px;
-      // margin-left: 67px;
 
       position: relative;
 
       .display-item {
-        width: 614px;
-        height: 345px;
-
         position: absolute;
         left: 0;
-
-        background: #5d8a8a;
 
         z-index: 10;
 
@@ -340,18 +397,10 @@ $heightSize: 490px;
         cursor: pointer;
 
         .in-img {
-          max-width: 614px;
-          min-width: 614px;
-          max-height: 345px;
-          min-height: 345px;
-          object-fit: cover;
         }
       }
 
       .carousel-item {
-        width: 614px;
-        height: 345px;
-
         transform: scale(0.8);
 
         position: absolute;
@@ -365,18 +414,10 @@ $heightSize: 490px;
         cursor: pointer;
 
         .in-img {
-          max-width: 614px;
-          min-width: 614px;
-          max-height: 345px;
-          min-height: 345px;
-          object-fit: cover;
         }
       }
 
       .hidden-item {
-        width: 614px;
-        height: 345px;
-
         transform: scale(0.8);
         visibility: hidden;
 
@@ -389,11 +430,6 @@ $heightSize: 490px;
         @include utilTransition();
 
         .in-img {
-          max-width: 614px;
-          min-width: 614px;
-          max-height: 345px;
-          min-height: 345px;
-          object-fit: cover;
         }
       }
 

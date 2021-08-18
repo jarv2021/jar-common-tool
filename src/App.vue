@@ -47,7 +47,7 @@ export default {
         {
           id: Math.random(),
           type: "car",
-          name: "vue车牌号选择器"
+          name: "车牌号选择器"
         },
         {
           id: Math.random(),

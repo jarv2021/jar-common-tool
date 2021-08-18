@@ -1,7 +1,7 @@
 <template>
   <div class="car-box">
     <car-input v-model="carNum">
-      <div class="trigger">触发</div>
+      <div class="trigger">车牌号选择器触发</div>
     </car-input>
 
     <template v-if="show">

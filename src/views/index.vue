@@ -29,7 +29,7 @@ export default {
       list: [
         {
           id: Math.random(100),
-          title: "双项轮播组件",
+          title: "双项轮播组件（vue2）",
           cover: carousel,
           desc:
             "一般轮播都是左中右结构的，这个组件的轮播是左右结构的，目前尚未被超越，哈哈哈",
@@ -37,31 +37,31 @@ export default {
         },
         {
           id: Math.random(100),
-          title: "pdf阅读组件",
+          title: "pdf阅读组件（vue2）",
           cover: pdfRead,
           desc: "该组件支持滚动翻页和点击翻页功能",
           path: "/pdf"
         },
         {
           id: Math.random(100),
-          title: "自定义头像上传组件",
+          title: "自定义头像上传组件（vue2）",
           cover: uploadAvatarv1,
-          desc: "自定义头像上传组件,限制比较少，专注于裁剪功能",
+          desc: "自定义头像上传，限制比较少，专注于裁剪功能",
           path: "/uploadAvatarV1"
         },
         {
           id: Math.random(100),
-          title: "twittetr头像上传组件",
+          title: "twittetr头像上传组件（vue2）",
           cover: uploadAvatarv2,
-          desc: "仿twittetr头像上传组件",
+          desc: "仿twittetr头像上传",
           path: "/uploadAvatarV2"
         },
         {
           id: Math.random(100),
-          title: "vue车牌号选择器组件",
+          title: "车牌号选择器组件（vue2）",
           cover: cardImg,
           desc:
-            "这个组件是完全原生的，目前支持非绿车牌，如有需更多支持，敬请github留言",
+            "该组件是完全原生的，推荐用移动浏览器查看，目前支持非绿车牌，如有需更多支持，敬请github留言",
           path: "/car"
         }
       ]
