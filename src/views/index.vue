@@ -44,14 +44,14 @@ export default {
         },
         {
           id: Math.random(100),
-          title: "自定义头像上传组件（vue2）",
+          title: "头像上传（vue2|纯截图版）",
           cover: uploadAvatarv1,
           desc: "自定义头像上传，限制比较少，专注于裁剪功能",
           path: "/uploadAvatarV1"
         },
         {
           id: Math.random(100),
-          title: "twittetr头像上传组件（vue2）",
+          title: "头像上传（vue2|仿twitter版）",
           cover: uploadAvatarv2,
           desc: "仿twittetr头像上传",
           path: "/uploadAvatarV2"

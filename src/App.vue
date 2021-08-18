@@ -57,12 +57,12 @@ export default {
         {
           id: Math.random(),
           type: "uploadAvatarV1",
-          name: "头像上传v1"
+          name: "头像上传（纯截图版）"
         },
         {
           id: Math.random(),
           type: "uploadAvatarV2",
-          name: "头像上传v2"
+          name: "头像上传（仿twitter版）"
         }
       ]
     };

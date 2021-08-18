@@ -16,6 +16,10 @@
     </div>
 
     <div class="in-content">
+      <div class="article-box">
+        <MARKDOM :md="README" />
+      </div>
+
       <div class="in-pdf-box">
         <template v-if="pdfConfig.pageTurn">
           <div class="in-page-turn">
@@ -117,8 +121,14 @@ export default {
   .in-content {
     display: flex;
 
+    .article-box {
+      max-width: 437px;
+    }
+
     .in-pdf-box {
       width: 99%;
+      margin: 0 10px;
+
       .in-page-scroll {
         max-height: 90vh;
         overflow-y: auto;

@@ -1,5 +1,7 @@
 ## pdf 阅读组件
 
+## 使用
+
 ```
    ！前提模块安装： pdfjs-dist
    pdfjs-dist 文档：https://github.com/mozilla/pdfjs-dist
@@ -13,7 +15,7 @@
             />
 ```
 
-## 使用
+### Props
 
 #### pdfConfig
 

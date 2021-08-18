@@ -1,10 +1,14 @@
 <template>
   <div class="carousel-demo">
     <carousel :swiperConfig="swiperConfig" :displayConfig="displayConfig" />
+    <div class="article-box">
+      <MARKDOM :md="README" />
+    </div>
   </div>
 </template>
 
 <script>
+import README from "./README.md";
 import carousel from "./carousel";
 export default {
   name: "carousel-demo",
@@ -13,6 +17,7 @@ export default {
   },
   data() {
     return {
+      README,
       swiperConfig: {
         showNext: true,
         swiperList: []

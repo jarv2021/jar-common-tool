@@ -1,5 +1,12 @@
 ## 双项轮播组件
 
+### 使用
+
+```
+   使用方式：
+   <carousel :swiperConfig="swiperConfig" :displayConfig="displayConfig" />
+```
+
 #### props
 
 | 名称          | 说明               |

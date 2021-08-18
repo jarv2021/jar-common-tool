@@ -1,5 +1,9 @@
 <template>
   <div class="car-box">
+    <div class="article-box">
+      <MARKDOM :md="README" />
+    </div>
+
     <car-input v-model="carNum">
       <div class="trigger">车牌号选择器触发</div>
     </car-input>
@@ -17,11 +21,13 @@
 </template>
 
 <script>
+import README from "./README.md";
 import carInput from "./carInput";
 export default {
   components: { carInput },
   data() {
     return {
+      README,
       carNum: null
     };
   },
