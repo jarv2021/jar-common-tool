@@ -30,9 +30,14 @@ const constantRoter = [
     name: "carousel"
   },
   {
-    path: "/uploadAvatar",
-    component: () => import("@/components/upload-avatar/demo"),
-    name: "uploadAvatar"
+    path: "/uploadAvatarV1",
+    component: () => import("@/components/upload-avatar-v1/demo"),
+    name: "uploadAvatarV1"
+  },
+  {
+    path: "/uploadAvatarV2",
+    component: () => import("@/components/upload-avatar-v2/demo"),
+    name: "uploadAvatarV2"
   }
 ];
 

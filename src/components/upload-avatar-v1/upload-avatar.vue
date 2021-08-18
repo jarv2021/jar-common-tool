@@ -13,16 +13,10 @@
     <div class="upload-dialog" v-if="showDialog">
       <div class="dialog-mask" @click="closeDialog"></div>
       <div class="cropper-show-box">
-        <topBox @save="saveFun" @close="closeFun" v-if="showTopBox" />
         <slot name="topBox" />
         <div :style="cropperBoxStyle" class="crop-container">
           <img :src="imgUrl" class="crop-img" />
         </div>
-        <progressBar
-          v-if="showProgressBar"
-          :progressNum="progressNum"
-          @progressResult="progressResultFun"
-        />
         <slot name="footBox" />
       </div>
     </div>
@@ -34,21 +28,8 @@ import axios from "axios";
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.css";
 
-import progressBar from "./progress-bar";
-import topBox from "./top-box";
-
 export default {
   props: {
-    // 显示缩放百分比
-    showProgressBar: {
-      type: Boolean,
-      default: false
-    },
-    // 显示头部按钮
-    showTopBox: {
-      type: Boolean,
-      default: false
-    },
     // 输出裁剪图片的质量设置
     resultQuality: {
       type: [Object],
@@ -131,10 +112,6 @@ export default {
       }
     }
   },
-  components: {
-    progressBar,
-    topBox
-  },
   data() {
     return {
       myCropper: null,
@@ -170,25 +147,33 @@ export default {
         ...that.cropperConfig,
         ready: event => {
           let copyWheelConfig = that.copyWheelConfig;
-          let zoom = 0.5;
-          if (!copyWheelConfig.customize) {
+          let cropperConfig = that.cropperConfig;
+          let zoom = copyWheelConfig.minZoom;
+          let containerConfig = that.containerConfig;
+
+          if (copyWheelConfig.customize === false) {
             let naturalHeight = event.target.naturalHeight;
             let naturalWidth = event.target.naturalWidth;
-            let cropperConfig = that.cropperConfig;
 
             let targetVal =
               naturalHeight > naturalWidth ? naturalWidth : naturalHeight;
             copyWheelConfig.minZoom = cropperConfig.minCropBoxWidth / targetVal;
             copyWheelConfig.maxZoom = copyWheelConfig.minZoom + 2;
             zoom = copyWheelConfig.minZoom;
-            // console.info("copyWheelConfig", copyWheelConfig);
           }
+
+          let cropBoxLeft =
+            containerConfig.width / 2 - cropperConfig.minCropBoxWidth / 2;
+          let cropBoxTop =
+            containerConfig.height / 2 - cropperConfig.minCropBoxHeight / 2;
 
           that.setZoom(zoom);
 
           that.myCropper.setCropBoxData({
-            width: 440,
-            height: 440
+            left: cropBoxLeft,
+            top: cropBoxTop,
+            width: cropperConfig.minCropBoxWidth,
+            height: cropperConfig.minCropBoxHeight
           });
 
           that.$forceUpdate();
@@ -215,6 +200,12 @@ export default {
     },
     handleMove() {
       // console.info("handleMove", data);
+    },
+    chooseFile() {
+      const active = document.getElementById("uploadsId");
+      const mouseEvent = document.createEvent("MouseEvents"); // FF的处理
+      mouseEvent.initEvent("click", true, true);
+      active.dispatchEvent(mouseEvent);
     },
     // 设置缩放比率
     handleZoom(data) {

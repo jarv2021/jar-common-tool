@@ -19,7 +19,8 @@
 import cardImg from "./../assets/card_num_select.png";
 import carousel from "./../assets/carousel.jpg";
 import pdfRead from "./../assets/pdf_read.jpg";
-import uploadAvatar from "./../assets/upload_avatar.jpg";
+import uploadAvatarv1 from "./../assets/upload_avatarv1.jpg";
+import uploadAvatarv2 from "./../assets/upload_avatarv2.jpg";
 
 export default {
   name: "index-container",
@@ -43,10 +44,17 @@ export default {
         },
         {
           id: Math.random(100),
+          title: "自定义头像上传组件",
+          cover: uploadAvatarv1,
+          desc: "自定义头像上传组件,限制比较少，专注于裁剪功能",
+          path: "/uploadAvatarV1"
+        },
+        {
+          id: Math.random(100),
           title: "twittetr头像上传组件",
-          cover: uploadAvatar,
+          cover: uploadAvatarv2,
           desc: "仿twittetr头像上传组件",
-          path: "/uploadAvatar"
+          path: "/uploadAvatarV2"
         },
         {
           id: Math.random(100),
@@ -63,7 +71,7 @@ export default {
     handleCover(item) {
       return `
          background-image:url(${item.cover});
-         background-size:cover;
+         background-size:contain;
         `;
     },
     itemClick(item) {

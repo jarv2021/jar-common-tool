@@ -56,8 +56,13 @@ export default {
         },
         {
           id: Math.random(),
-          type: "uploadAvatar",
-          name: "头像上传"
+          type: "uploadAvatarV1",
+          name: "头像上传v1"
+        },
+        {
+          id: Math.random(),
+          type: "uploadAvatarV2",
+          name: "头像上传v2"
         }
       ]
     };

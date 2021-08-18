@@ -32,6 +32,9 @@
 
    触发上传文件：
    this.$refs.uploadAvatar.chooseFile();
+
+   保存截图：
+   this.$refs.uploadAvatar.getCropResult();
 ```
 
 #### Props
@@ -141,3 +144,10 @@ height: 500
 | cropUploadSuccess | 上传成功， 参数( jsonData, field )                     |
 | cropUploadFail    | 上传失败， 参数( status, field )                       |
 | zoomRatio         | 接收截图缩放的大小比率值                               |
+
+#### slot
+
+| 名称    | 说明                    |
+| :------ | :---------------------- |
+| footBox | 自定义截图容器的 footer |
+| topBox  | 自定义截图容器的 header |
