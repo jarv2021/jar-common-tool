@@ -41,6 +41,7 @@ const constantRoter = [
 ];
 
 const router = new Router({
+  mode: "history",
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoter
 });
