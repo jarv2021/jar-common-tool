@@ -41,7 +41,7 @@ const constantRoter = [
 ];
 
 const router = new Router({
-  mode: "history",
+  mode: "hash",
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRoter
 });

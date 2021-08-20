@@ -5,7 +5,7 @@ const pxtovw = require("postcss-px-to-viewport");
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  publicPath: "./",
+  publicPath: "",
   // //是否开启 productionSourceMap
   productionSourceMap: process.env.NODE_ENV !== "production",
   // //是否开启 eslint
