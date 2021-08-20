@@ -129,7 +129,11 @@ export default {
       }, this.loopTime * 1000);
     },
     handleStyle(item) {
+      // widthVal/(1920/100);
+
       let displayConfig = this.displayConfig;
+      let baseWidthSize = 1920;
+      let baseRate = baseWidthSize / 100;
       let result = `
       z-index:${100 - item.originIndex};
       opacity:${0.3 - item.originIndex / 30};`;
@@ -138,17 +142,10 @@ export default {
         result += `z-index:${200};opacity:1;`;
       }
 
-      // if (item.className === "display-item") {
-      //   result += `
-      //    width:${displayConfig.width}px;
-      //    height:${displayConfig.height}px;
-      //   `;
-      // }
-
       if (item.className === "carousel-item") {
         result += `
-         left:${displayConfig.subOffsetLeft}px;
-         top:${displayConfig.subOffsetTop}px;
+         left:${displayConfig.subOffsetLeft / baseRate}vw;
+         top:${displayConfig.subOffsetTop / baseRate}vw;
         `;
       }
 
@@ -224,15 +221,17 @@ export default {
     },
     setImgLimits() {
       let displayConfig = this.displayConfig;
+      let baseWidthSize = 1920;
+      let baseRate = baseWidthSize / 100;
       let imgArr = document.querySelectorAll(".in-img");
       // console.info("imgArr", imgArr);
       let styleStr = `
-           width:${displayConfig.width}px;
-           height:${displayConfig.height}px;
-           max-width: ${displayConfig.width}px;
-           min-width: ${displayConfig.width}px;
-           max-height:${displayConfig.height}px;
-           min-height:${displayConfig.height}px;
+           width:${displayConfig.width / baseRate}vw;
+           height:${displayConfig.height / baseRate}vw;
+           max-width: ${displayConfig.width / baseRate}vw;
+           min-width: ${displayConfig.width / baseRate}vw;
+           max-height:${displayConfig.height / baseRate}vw;
+           min-height:${displayConfig.height / baseRate}vw;
            object-fit: cover;
       `;
       for (let img of imgArr) {
@@ -422,10 +421,11 @@ export default {
         visibility: hidden;
 
         position: absolute;
-        left: -115px;
+        left: 0;
         top: 0;
 
-        z-index: 4;
+        z-index: -4;
+        opacity: 0;
 
         @include utilTransition();
 

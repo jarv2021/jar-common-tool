@@ -16,10 +16,6 @@
     </div>
 
     <div class="in-content">
-      <div class="article-box">
-        <MARKDOM :md="README" />
-      </div>
-
       <div class="in-pdf-box">
         <template v-if="pdfConfig.pageTurn">
           <div class="in-page-turn">
@@ -50,6 +46,10 @@
             />
           </div>
         </template>
+      </div>
+
+      <div class="article-box">
+        <MARKDOM :md="README" />
       </div>
     </div>
   </div>
