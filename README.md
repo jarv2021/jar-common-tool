@@ -6,8 +6,8 @@
 https://github.com/JACK-Liang-2020/jar-common-tool
 
 演示：
-https://jarv2021.github.io/#/index
-https://qiu2046.gitee.io/jarv2021.github.io/
+https://jarv2021.github.io/index
+https://qiu2046.gitee.io/jarv2021.github.io/index
 
 ### 项目介绍 ：
 
