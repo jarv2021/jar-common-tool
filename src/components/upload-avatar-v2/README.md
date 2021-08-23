@@ -13,7 +13,7 @@
 2.是否截图框和上传图片都能拖动
 3.上传图片是否按比例变大或缩小，填满截图框
 
-思路：
+针对需求的优化：
 1.参考vue-Cropper，使用了cropperjs，并且裁剪了许多功能，使功能集中于缩放和裁剪两项
 2.cropperjs 并没有提供方法返回缩放的精确数值，所以组件改用了 监听 DOMMouseScroll 事件，根据一定的比率换算，设置缩放大小
 3.细化截图的结果输出，分别返回 cropSuccess， cropFail， cropUploadSuccess ，cropUploadFail事件
