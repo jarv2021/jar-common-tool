@@ -22,7 +22,29 @@
 showNext: true,
 // type为Array  轮播的图片数组
 swiperList:[]
+
+tip：
+swiperList的图片来源属性需设置为picture。
+例如
+swiperList = [
+      {
+        picture: require("@/assets/c-1.jpg")
+      },
+      {
+        picture: require("@/assets/c-2.jpg")
+      },
+      {
+        picture: require("@/assets/c-3.jpg")
+      },
+      {
+        picture: require("@/assets/c-4.jpg")
+      },
+      {
+        picture: require("@/assets/c-5.jpg")
+      }
+];
 ```
+
 
 ##### displayConfig
 
